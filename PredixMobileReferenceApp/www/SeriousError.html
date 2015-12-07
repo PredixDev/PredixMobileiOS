@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.15), see www.w3.org" />
+  <style type="text/css">
+/*<![CDATA[*/
+  body {text-align:center}
+  div {padding: 10px}
+  #title {color: red;font-size:x-large;text-align:center}
+  #button {font-size:x-large;width:150px;}
+  #errormsg {overflow:hidden;resize: none;border:none;font-size:large;width:100%;margin-left:auto;margin-right:auto; text-align:center}
+  /*]]>*/
+  </style>
+
+  <title></title>
+</head>
+
+<body>
+  <div id='container'>
+    <div id='title'>
+      We're unable to continue at this time
+    </div>
+
+    <div id='image'>
+      <img src="images/SeriousErrorImage.jpeg" />
+    </div>
+
+    <div id='msgContainer'>
+      <textarea id='errormsg' readonly></textarea>
+    </div>
+
+    <div id='buttonContainer'>
+      <input id='button' type='button' onclick='buttonClick()' value='Try again' />
+    </div>
+  </div><script lang='javascript' type="text/javascript">
+//<![CDATA[
+  var route;
+  var method;
+  console.baseLog = console.log;
+  console.log = function(logMessage) {
+    console.baseLog(logMessage);
+    var xmlhttp = new XMLHttpRequest();
+    
+    var data = JSON.stringify({"level":"error", "log":logMessage});
+         
+    xmlhttp.open("PUT", "http://pmapi/log", true);
+    xmlhttp.setRequestHeader("Content-type","application/json;charset=UTF-8");
+    xmlhttp.setRequestHeader("Content-length", data.length);
+    xmlhttp.send(data);
+  };
+
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    var results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  function buttonClick(){
+    console.log("Try Again button clicked. Using method: " + method + " routing to: " + route);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == XMLHttpRequest.DONE && xmlhttp.status != 200) {
+            // if the service we call doesn't return OK we need to recall the serious error.
+          console.log("call to " + route + " returned status code: " + xmlhttp.status + " Calling window/showseriouserrorpage");
+          var newMessage = 'Unable to initialize application\n' + xmlhttp.responseText;
+          var url = 'http://pmapi/window/showseriouserrorpage?e=' + encodeURIComponent(newMessage);
+          var xmlhttpError = new XMLHttpRequest();
+          xmlhttpError.open("POST", url, true);
+          xmlhttpError.send();
+      }
+    };
+
+    xmlhttp.open(method, "http://pmapi/" + route, true);
+    xmlhttp.send();
+    document.getElementById('container').hidden = true;
+  }
+
+  console.log('SeriousError URL: ' + location);
+  var msgDiv = document.getElementById('errormsg');
+  var msg = getParameterByName('e');
+  route = getParameterByName('route');
+  method = getParameterByName('method');
+
+  if (route == "" || method == "")
+  {
+    var button = document.getElementById('button');
+    button.hidden = true;
+    console.log("No route or method was in call, so disabling return button")
+  }
+  console.log('SeriousError message:' + msg);
+  msgDiv.innerHTML = msg;
+  msgDiv.style.height = "1px";
+  msgDiv.style.height = (msgDiv.scrollHeight)+"px";
+  //]]>
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="PredixGoReferenceApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNU-Na-loV" userLabel="WebView">
+                                <rect key="frame" x="0.0" y="1" width="600" height="599"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ieH-g7-pXI">
+                                <rect key="frame" x="282" y="282" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLP-o7-U6I">
+                                <rect key="frame" x="20" y="324" width="560" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="0e3-oX-zKt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GLP-o7-U6I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="0p3-O7-RFd"/>
+                            <constraint firstAttribute="trailing" secondItem="UNU-Na-loV" secondAttribute="trailing" id="51J-3E-odo"/>
+                            <constraint firstItem="UNU-Na-loV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9oO-7f-VGJ"/>
+                            <constraint firstItem="ieH-g7-pXI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="P5Q-gw-wdU"/>
+                            <constraint firstItem="UNU-Na-loV" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="VhJ-Sd-tvd"/>
+                            <constraint firstItem="UNU-Na-loV" firstAttribute="centerY" secondItem="ieH-g7-pXI" secondAttribute="centerY" id="fIW-Tg-dSu"/>
+                            <constraint firstItem="GLP-o7-U6I" firstAttribute="centerX" secondItem="ieH-g7-pXI" secondAttribute="centerX" id="gbA-QV-UqG"/>
+                            <constraint firstItem="UNU-Na-loV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hpR-fd-Hay"/>
+                            <constraint firstItem="ieH-g7-pXI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iWR-7y-f9N"/>
+                            <constraint firstItem="GLP-o7-U6I" firstAttribute="top" secondItem="ieH-g7-pXI" secondAttribute="bottom" constant="5" id="vy6-FR-Rdx"/>
+                            <constraint firstItem="UNU-Na-loV" firstAttribute="centerX" secondItem="ieH-g7-pXI" secondAttribute="centerX" id="xx4-Hi-aTY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GLP-o7-U6I" secondAttribute="trailing" id="zsg-Jg-W68"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="spinner" destination="ieH-g7-pXI" id="n1F-9z-GZh"/>
+                        <outlet property="spinnerLabel" destination="GLP-o7-U6I" id="Ia4-I3-UGh"/>
+                        <outlet property="webView" destination="UNU-Na-loV" id="08a-SZ-qLt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="348" y="426"/>
+        </scene>
+    </scenes>
+</document>

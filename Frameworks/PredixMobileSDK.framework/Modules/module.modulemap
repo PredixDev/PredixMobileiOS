@@ -1,0 +1,10 @@
+framework module PredixMobileSDK {
+  umbrella header "PredixMobileSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module PredixMobileSDK.Swift {
+    header "PredixMobileSDK-Swift.h"
+}

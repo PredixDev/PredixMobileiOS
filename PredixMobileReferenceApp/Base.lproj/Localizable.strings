@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  PredixMobileReferenceApp
+
+  Created by Johns, Andy (GE Corporate) on 9/29/15.
+  Copyright © 2015 GE. All rights reserved.
+*/
+
+// default downloading data spinner message
+"Downloading data" = "Downloading data";
+
+// Authentication failed message.
+"Authentication failed. Unable to continue." = "Authentication failed. Unable to continue.";
+
+// Couchbase replication setup failed message.
+"Couchbase replication setup failed" = "Couchbase replication setup failed";
+
+// Unable to load specified pm app message
+"The PredixMobile App %@ could not be loaded" = "The PredixMobile App %@ could not be loaded";
+
+// Unable to determine initial startup pm app message
+"Unable to determine initial startup PredixMobile App" = "Unable to determine initial startup PredixMobile App";
+
+// Unable to initialize application message
+"Unable to initialize application" = "Unable to initialize application";
+
+// Default serious error message
+"A serious error was encountered" = "A serious error was encountered";
+
+// Popup serious error title message
+"Unable to continue" = "Unable to continue";
+
+// Popup serious error continued error message
+"Unable to continue application" = "Unable to continue application";
+
