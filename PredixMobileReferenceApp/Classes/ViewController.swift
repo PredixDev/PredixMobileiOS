@@ -15,6 +15,8 @@ class ViewController: UIViewController, UIWebViewDelegate, PredixAppWindowProtoc
     @IBOutlet var spinner: UIActivityIndicatorView!
     @IBOutlet var spinnerLabel: UILabel!
     
+    internal var isAuthenticationView : Bool = false
+    
     var webViewFinishedLoad : (()->())?
     
     func loadURL(URL: NSURL, parameters: [NSObject : AnyObject]?, onComplete: (()->())?)
@@ -29,7 +31,7 @@ class ViewController: UIViewController, UIWebViewDelegate, PredixAppWindowProtoc
         {
             self.webView.scrollView.scrollEnabled = false
         }
-        
+
         self.webView.loadRequest(NSURLRequest(URL:URL))
     }
     
@@ -74,13 +76,27 @@ class ViewController: UIViewController, UIWebViewDelegate, PredixAppWindowProtoc
 
     func webViewDidStartLoad(webView: UIWebView)
     {
-        PGSDKLogger.trace("Main web view starting load")
+        PGSDKLogger.trace("Web view starting load")
         self.spinner.startAnimating()
     }
 
     func webViewDidFinishLoad(webView: UIWebView)
     {
-        PGSDKLogger.trace("Main web view finished load")
+        
+        if let request = webView.request, cachedResponse = NSURLCache.sharedURLCache().cachedResponseForRequest(request), response = cachedResponse.response as? NSHTTPURLResponse
+        {
+            if response.statusCode > 399
+            {
+                PGSDKLogger.error("Web view response error code: \(response.statusCode)")
+                if self.isAuthenticationView
+                {
+                    PGSDKLogger.error("Web view page load error (\(response.statusCode)) while autheticating. Aborting authentication")
+                    PredixMobilityManager.sharedInstance.authenticationComplete()
+                }
+            }
+        }
+
+        PGSDKLogger.trace("Web view finished load")
         self.spinner.stopAnimating()
         if let webViewFinishedLoad = self.webViewFinishedLoad
         {
@@ -103,7 +119,7 @@ class ViewController: UIViewController, UIWebViewDelegate, PredixAppWindowProtoc
         if error.code == NSURLErrorCancelled {return}
         if error.code == 102 && error.domain == "WebKitErrorDomain" {return}
 
-        PGSDKLogger.debug("Main view encountered loading error: \(error.description)")
+        PGSDKLogger.debug("Web view encountered loading error: \(error.description)")
         ShowSeriousErrorHelper.ShowUserError(error.localizedDescription)
         
 

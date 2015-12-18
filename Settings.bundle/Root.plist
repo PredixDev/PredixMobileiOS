@@ -56,7 +56,7 @@
 			<key>AutocorrectionType</key>
 			<string>No</string>
 			<key>DefaultValue</key>
-			<string>pg1.grc-apps.svc.ice.ge.com</string>
+			<string></string>
 			<key>IsSecure</key>
 			<false/>
 			<key>Key</key>

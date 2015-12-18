@@ -22,11 +22,7 @@
 		</data>
 		<key>Headers/PredixMobileSDK.h</key>
 		<data>
-		2gycnvl+Pa2Q9ll3it9ZlP39FYc=
-		</data>
-		<key>Headers/Reachability.h</key>
-		<data>
-		mAEXgmwJzEiapeDWjajqT4shst8=
+		c0u4Lr7U9TiMMTe0BUhrpCKnWnw=
 		</data>
 		<key>Headers/SSZipArchive.h</key>
 		<data>
@@ -50,7 +46,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		qRw3bbakLrsAHfO/ybsrj70hD+I=
+		NT8ppVeI8D5dPT4ABvzdyLqxCuk=
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm.swiftdoc</key>
 		<data>
@@ -58,7 +54,7 @@
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm.swiftmodule</key>
 		<data>
-		QZVuvI5BerqTEeBfex/1OmZtlW8=
+		D3zfAAJrJJ1jTBzbbQCQVORVVfo=
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -66,7 +62,7 @@
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		8WUsT2MxhxWzDS4ZNp4SmzD2SMo=
+		BCR6SzT3k7b7x0Q94jQ6hltX3lk=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -105,11 +101,7 @@
 		</data>
 		<key>Headers/PredixMobileSDK.h</key>
 		<data>
-		2gycnvl+Pa2Q9ll3it9ZlP39FYc=
-		</data>
-		<key>Headers/Reachability.h</key>
-		<data>
-		mAEXgmwJzEiapeDWjajqT4shst8=
+		c0u4Lr7U9TiMMTe0BUhrpCKnWnw=
 		</data>
 		<key>Headers/SSZipArchive.h</key>
 		<data>
@@ -137,7 +129,7 @@
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm.swiftmodule</key>
 		<data>
-		QZVuvI5BerqTEeBfex/1OmZtlW8=
+		D3zfAAJrJJ1jTBzbbQCQVORVVfo=
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -145,7 +137,7 @@
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		8WUsT2MxhxWzDS4ZNp4SmzD2SMo=
+		BCR6SzT3k7b7x0Q94jQ6hltX3lk=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>

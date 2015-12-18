@@ -37,10 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pmm = PredixMobilityManager(packageWindow: vc, presentAuthentication: { (packageWindow) -> (PredixAppWindowProtocol) in
             
             // for this example we're using a new instance of the primary view controller to host the authentication pages.
-            let authVC = vc.storyboard!.instantiateViewControllerWithIdentifier("ViewController")
+            let authVC = vc.storyboard!.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+            authVC.isAuthenticationView = true
             unownedSelf.authenticationViewController = authVC
             unownedSelf.window?.rootViewController!.presentViewController(authVC, animated: true, completion: nil)
-            return authVC as! PredixAppWindowProtocol
+            return authVC as PredixAppWindowProtocol
             
             }, dismissAuthentication: { (authenticationWindow) -> () in
                 
@@ -68,9 +69,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             PGSDKLogger.info("Simulator Application Support dir is here:\n \(applicationSupportDirectory))")
         }
         
+        if let launchOptions = launchOptions, notification = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification
+        {
+            PGSDKLogger.debug("Startup with local notification")
+            PGSDKLogger.trace("Startup local notification info: \(notification.userInfo)")
+            PredixMobilityManager.sharedInstance.application(application, didReceiveLocalNotification: notification)
+        }
+
         // start the application. This will spin up the PredixMobile environment and call the Boot service to start the application.
         pmm.startApp()
-
+        
         return true
     }
 
