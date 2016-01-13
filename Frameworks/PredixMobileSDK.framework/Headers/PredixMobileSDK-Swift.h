@@ -245,22 +245,32 @@ SWIFT_CLASS("_TtC15PredixMobileSDK27PredixMobilityConfiguration")
 + (void)setDefaultInitializationDetectionKey:(NSString * __nonnull)value;
 + (BOOL)traceLogsAllRequestsDefault;
 + (void)setTraceLogsAllRequestsDefault:(BOOL)value;
++ (NSDictionary<NSString *, id> * __nullable)remoteNotificationRegistrationAdditionalInfo;
++ (void)setRemoteNotificationRegistrationAdditionalInfo:(NSDictionary<NSString *, id> * __nullable)value;
++ (NSString * __nonnull)remoteNotificationRegistrationDocumentId;
++ (void)setRemoteNotificationRegistrationDocumentId:(NSString * __nonnull)value;
++ (NSString * __nonnull)remoteNotificationRegistrationDocumentType;
++ (void)setRemoteNotificationRegistrationDocumentType:(NSString * __nonnull)value;
 + (void)loadConfiguration;
++ (void)appendDataViewDefinition:(NSString * __nonnull)viewName version:(NSString * __nonnull)version mapFunction:(void (^ __nonnull)(NSDictionary<NSString *, id> * __nonnull, void (^ __nonnull)(id __nonnull, id __nullable)))mapFunction;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+@class NSNotification;
 @class UIApplication;
 @class UILocalNotification;
+@class NSData;
+@class NSError;
 
 SWIFT_CLASS("_TtC15PredixMobileSDK21PredixMobilityManager")
 @interface PredixMobilityManager : NSObject
++ (PredixMobilityManager * __nonnull)sharedInstance;
 @property (nonatomic, strong) id <PredixAppWindowProtocol> __nonnull packageWindow;
 @property (nonatomic, copy) id <PredixAppWindowProtocol> __nonnull (^ __nonnull presentAuthentication)(id <PredixAppWindowProtocol> __nonnull);
 @property (nonatomic, copy) void (^ __nonnull dismissAuthentication)(id <PredixAppWindowProtocol> __nonnull);
-@property (nonatomic, readonly, strong) id <PredixAppWindowProtocol> __nonnull currentWindow;
-@property (nonatomic, copy) NSArray<NSDictionary<NSString *, id> *> * __nullable localNotifications;
+@property (nonatomic, copy) NSArray<NSDictionary<NSString *, id> *> * __nullable localOrRemoteNotifications;
 @property (nonatomic, readonly) BOOL isShowingAuthentication;
-+ (PredixMobilityManager * __nonnull)sharedInstance;
+@property (nonatomic, readonly, strong) id <PredixAppWindowProtocol> __nonnull currentWindow;
 - (nonnull instancetype)initWithPackageWindow:(id <PredixAppWindowProtocol> __nonnull)packageWindow presentAuthentication:(id <PredixAppWindowProtocol> __nonnull (^ __nonnull)(id <PredixAppWindowProtocol> __nonnull))presentAuthentication dismissAuthentication:(void (^ __nonnull)(id <PredixAppWindowProtocol> __nonnull))dismissAuthentication OBJC_DESIGNATED_INITIALIZER;
 - (void)showAuthentication:(NSURL * __nonnull)URL onComplete:(void (^ __nullable)(void))onComplete;
 - (void)authenticationComplete;
@@ -268,12 +278,17 @@ SWIFT_CLASS("_TtC15PredixMobileSDK21PredixMobilityManager")
 - (void)startApp;
 - (void)callBootService;
 - (void)ShowUserError:(NSString * __nonnull)msg;
+- (void)addTranslationForNotification:(NSString * __nonnull)originalNotificationName asNotificationName:(NSString * __nonnull)asNotificationName translation:(NSDictionary<NSString *, id> * __nullable (^ __nonnull)(NSNotification * __nonnull))translation;
+- (void)removeTranslationForNotificationName:(NSString * __nonnull)notificationName;
 - (void)applicationWillResignActive:(UIApplication * __nonnull)application;
 - (void)applicationDidEnterBackground:(UIApplication * __nonnull)application;
 - (void)applicationWillEnterForeground:(UIApplication * __nonnull)application;
 - (void)applicationDidBecomeActive:(UIApplication * __nonnull)application;
 - (void)applicationWillTerminate:(UIApplication * __nonnull)application;
 - (void)application:(UIApplication * __nonnull)application didReceiveLocalNotification:(UILocalNotification * __nonnull)notification;
+- (void)application:(UIApplication * __nonnull)application didReceiveRemoteNotification:(NSDictionary * __nonnull)userInfo;
+- (void)application:(UIApplication * __nonnull)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData * __nonnull)deviceToken;
+- (void)application:(UIApplication * __nonnull)application didFailToRegisterForRemoteNotificationsWithError:(NSError * __nonnull)error;
 @end
 
 

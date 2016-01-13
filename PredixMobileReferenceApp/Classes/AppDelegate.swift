@@ -58,8 +58,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let processInfo = NSProcessInfo.processInfo()
         let device = UIDevice.currentDevice()
+        let bundle = NSBundle.mainBundle()
+        let id : String = bundle.bundleIdentifier ?? ""
 
-        PGSDKLogger.info("Running Environment:\n     locale: \(NSLocale.currentLocale().localeIdentifier)\n     device model:\(device.model)\n     device system name:\(device.systemName)\n     device system version:\(device.systemVersion)\n     device vendor identifier:\(device.identifierForVendor!.UUIDString)\n     iOS Version: \(processInfo.operatingSystemVersionString)")
+        PGSDKLogger.info("Running Environment:\n     locale: \(NSLocale.currentLocale().localeIdentifier)\n     device model:\(device.model)\n     device system name:\(device.systemName)\n     device system version:\(device.systemVersion)\n     device vendor identifier:\(device.identifierForVendor!.UUIDString)\n     iOS Version: \(processInfo.operatingSystemVersionString)\n     app bundle id: \(id)\n     app build version: \(bundle.objectForInfoDictionaryKey("CFBundleShortVersionString") ?? "")\n     app version: \(bundle.objectForInfoDictionaryKey(kCFBundleVersionKey as String) ?? "")")
         
         if TARGET_IPHONE_SIMULATOR == 1
         {
@@ -75,14 +77,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             PGSDKLogger.trace("Startup local notification info: \(notification.userInfo)")
             PredixMobilityManager.sharedInstance.application(application, didReceiveLocalNotification: notification)
         }
+        
+        if let launchOptions = launchOptions, userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] as? [NSObject : AnyObject]
+        {
+            PGSDKLogger.debug("Startup with remote notification")
+            PGSDKLogger.trace("Startup remote notification info: \(userInfo)")
+            PredixMobilityManager.sharedInstance.application(application, didReceiveRemoteNotification: userInfo)
+        }
 
         // start the application. This will spin up the PredixMobile environment and call the Boot service to start the application.
         pmm.startApp()
         
+        self.setupRemoteNotifications()
+        
         return true
     }
 
+    // Registers for Remote (Push) Notifications.
+    func setupRemoteNotifications()
+    {
+        self.setupUserNotificationSettings()
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+    }
 
+    // sets up the User Notification Settings, if those settings haven't already been setup.
+    func setupUserNotificationSettings()
+    {
+        // get the current settings
+        let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+        if settings == nil || settings!.categories == nil || settings!.categories!.isEmpty || settings!.types.isEmpty
+        {
+            // ensure the current settings have what we're expecting. If not, add what we want
+            let action = UIMutableUserNotificationAction()
+            action.activationMode = .Foreground
+            
+            let actionCategory = UIMutableUserNotificationCategory()
+            actionCategory.setActions([action], forContext: UIUserNotificationActionContext.Default)
+            
+            let categorySet = Set<UIMutableUserNotificationCategory>(arrayLiteral: actionCategory)
+            
+            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound] , categories: categorySet)
+            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        }
+    }
 
     
     //MARK: Application Delegate Handlers to pass handling to PredixMobilityManager
@@ -128,14 +165,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PredixMobilityManager.sharedInstance.application(application, didReceiveLocalNotification: notification)
     }
     
-
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PredixMobilityManager.sharedInstance.application(application, didReceiveRemoteNotification: userInfo)
+    }
     
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        PredixMobilityManager.sharedInstance.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+    }
 
-    
-
-    
-
-
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        PredixMobilityManager.sharedInstance.application(application, didFailToRegisterForRemoteNotificationsWithError: error)
+    }
 
 
 }

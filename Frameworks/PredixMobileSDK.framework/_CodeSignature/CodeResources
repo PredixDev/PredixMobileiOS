@@ -18,7 +18,7 @@
 		</data>
 		<key>Headers/PredixMobileSDK-Swift.h</key>
 		<data>
-		8eRIBubK+x9/XvFtUt57TPpBZ3I=
+		lHl4xziIrhvEEDdJLWsZGV7hi+0=
 		</data>
 		<key>Headers/PredixMobileSDK.h</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		dK72aJgjpC/45y0k/01I0nl7gw4=
+		0DJ067hKo18OGGtaKLIbn++qTY0=
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm.swiftdoc</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm.swiftmodule</key>
 		<data>
-		9wNmrMqazxrXUxv9LLYCf+IZ0SI=
+		XnCiy2JDmQxWK+5jZCjskWjnxjc=
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -62,7 +62,7 @@
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		Li3KEpwLxXONQQM81YvR+t8FOvQ=
+		uKeOAB6ePx5H5tR2L/rurt+PRjw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -97,7 +97,7 @@
 		</data>
 		<key>Headers/PredixMobileSDK-Swift.h</key>
 		<data>
-		8eRIBubK+x9/XvFtUt57TPpBZ3I=
+		lHl4xziIrhvEEDdJLWsZGV7hi+0=
 		</data>
 		<key>Headers/PredixMobileSDK.h</key>
 		<data>
@@ -129,7 +129,7 @@
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm.swiftmodule</key>
 		<data>
-		9wNmrMqazxrXUxv9LLYCf+IZ0SI=
+		XnCiy2JDmQxWK+5jZCjskWjnxjc=
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -137,7 +137,7 @@
 		</data>
 		<key>Modules/PredixMobileSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		Li3KEpwLxXONQQM81YvR+t8FOvQ=
+		uKeOAB6ePx5H5tR2L/rurt+PRjw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
