@@ -156,6 +156,14 @@ SWIFT_CLASS("_TtC15PredixMobileSDK13NotifyService")
 @end
 
 
+SWIFT_CLASS("_TtC15PredixMobileSDK14OpenURLService")
+@interface OpenURLService : NSObject <ServiceProtocol>
++ (NSString * __nonnull)serviceIdentifier;
++ (void)performRequest:(NSURLRequest * __nonnull)request response:(NSHTTPURLResponse * __nonnull)response responseReturn:(responseReturnBlock __nonnull)responseReturn dataReturn:(dataReturnBlock __nonnull)dataReturn requestComplete:(requestCompleteBlock __nonnull)requestComplete;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
 @interface PGSDKLogger (SWIFT_EXTENSION(PredixMobileSDK))
 @end
 
@@ -304,6 +312,9 @@ SWIFT_PROTOCOL("_TtP15PredixMobileSDK21ServiceRouterProtocol_")
 - (BOOL)registerService:(Class <ServiceProtocol> __nonnull)service;
 - (void)unregisterService:(Class <ServiceProtocol> __nonnull)service;
 - (void)processRequest:(NSURLRequest * __nonnull)request responseBlock:(responseReturnBlock __nonnull)responseBlock dataBlock:(dataReturnBlock __nonnull)dataBlock completionBlock:(requestCompleteBlock __nonnull)completionBlock;
+- (void)processRequestWithServiceId:(NSString * __nonnull)serviceId responseBlock:(responseReturnBlock __nonnull)responseBlock dataBlock:(dataReturnBlock __nonnull)dataBlock completionBlock:(requestCompleteBlock __nonnull)completionBlock;
+- (void)processRequest:(NSString * __nonnull)serviceId extraPath:(NSString * __nullable)extraPath responseBlock:(responseReturnBlock __nonnull)responseBlock dataBlock:(dataReturnBlock __nonnull)dataBlock completionBlock:(requestCompleteBlock __nonnull)completionBlock;
+- (void)processRequest:(NSString * __nonnull)serviceId extraPath:(NSString * __nullable)extraPath method:(NSString * __nonnull)method data:(NSData * __nullable)data responseBlock:(responseReturnBlock __nonnull)responseBlock dataBlock:(dataReturnBlock __nonnull)dataBlock completionBlock:(requestCompleteBlock __nonnull)completionBlock;
 @end
 
 
@@ -312,6 +323,9 @@ SWIFT_CLASS("_TtC15PredixMobileSDK13ServiceRouter")
 + (id <ServiceRouterProtocol> __nonnull)sharedInstance;
 - (BOOL)registerService:(Class <ServiceProtocol> __nonnull)service;
 - (void)unregisterService:(Class <ServiceProtocol> __nonnull)service;
+- (void)processRequestWithServiceId:(NSString * __nonnull)serviceId responseBlock:(responseReturnBlock __nonnull)responseBlock dataBlock:(dataReturnBlock __nonnull)dataBlock completionBlock:(requestCompleteBlock __nonnull)completionBlock;
+- (void)processRequest:(NSString * __nonnull)serviceId extraPath:(NSString * __nullable)extraPath responseBlock:(responseReturnBlock __nonnull)responseBlock dataBlock:(dataReturnBlock __nonnull)dataBlock completionBlock:(requestCompleteBlock __nonnull)completionBlock;
+- (void)processRequest:(NSString * __nonnull)serviceId extraPath:(NSString * __nullable)extraPath method:(NSString * __nonnull)method data:(NSData * __nullable)data responseBlock:(responseReturnBlock __nonnull)responseBlock dataBlock:(dataReturnBlock __nonnull)dataBlock completionBlock:(requestCompleteBlock __nonnull)completionBlock;
 - (void)processRequest:(NSURLRequest * __nonnull)request responseBlock:(responseReturnBlock __nonnull)responseBlock dataBlock:(dataReturnBlock __nonnull)dataBlock completionBlock:(requestCompleteBlock __nonnull)completionBlock;
 @end
 

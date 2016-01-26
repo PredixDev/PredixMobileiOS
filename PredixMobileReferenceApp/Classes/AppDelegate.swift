@@ -29,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Pre-load configuration. This will load any Settings bundles into NSUserDefaults and set default logging levels
         PredixMobilityConfiguration.loadConfiguration()
+        
+        // Add optional and custom services to the system if required
+        //PredixMobilityConfiguration.additionalBootServicesToRegister = [OpenURLService.self]
 
         // create the PredixMobilityManager object. This object coordinates the application state, interacts with the various services, and holds closures called during authentication.
         

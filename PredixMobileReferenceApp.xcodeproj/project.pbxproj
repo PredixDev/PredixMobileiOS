@@ -535,7 +535,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ge.ent.PredixMobileReferenceApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_INCLUDE_PATHS = "${SRCROOT}/${PRODUCT_NAME}/**";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PRODUCT_NAME)";
 			};
 			name = Debug;
 		};
@@ -564,7 +564,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ge.ent.PredixMobileReferenceApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_INCLUDE_PATHS = "${SRCROOT}/${PRODUCT_NAME}/**";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PRODUCT_NAME)";
 			};
 			name = Release;
 		};
@@ -583,6 +583,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileReferenceAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PredixMobileReferenceApp.app/PredixMobileReferenceApp";
 			};
 			name = Debug;
@@ -602,6 +603,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileReferenceAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PredixMobileReferenceApp.app/PredixMobileReferenceApp";
 			};
 			name = Release;
