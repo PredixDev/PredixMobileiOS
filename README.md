@@ -3,7 +3,7 @@
 This project is the sample reference application for the Predix Mobile Container on the iOS platform.
 
 ##Getting Started
-### Step 0 - Prerequesites
+### Step 0 - Prerequisites
 It is assumed you already have a Predix Mobile cloud services installation, have installed the Predix Mobile command line tool, and have followed the Getting Started examples for those repos to publish your initial Predix Mobile webapp, define your Predix Mobile app, and import the sample data. 
 
 It is also assumed you're running on a Mac, with the latest version of XCode installed.
