@@ -259,6 +259,13 @@ SWIFT_CLASS("_TtC15PredixMobileSDK27PredixMobilityConfiguration")
 + (void)setRemoteNotificationRegistrationDocumentId:(NSString * __nonnull)value;
 + (NSString * __nonnull)remoteNotificationRegistrationDocumentType;
 + (void)setRemoteNotificationRegistrationDocumentType:(NSString * __nonnull)value;
++ (NSString * __nullable)keychainAccessGroup;
++ (void)setKeychainAccessGroup:(NSString * __nullable)value;
++ (NSString * __nonnull)keychainKeyPrefix;
++ (void)setKeychainKeyPrefix:(NSString * __nonnull)value;
++ (NSString * __nonnull)versionInfo;
++ (NSURL * __nonnull)localStorageURL;
++ (NSURL * __nullable)userLocalStorageURL;
 + (void)loadConfiguration;
 + (void)appendDataViewDefinition:(NSString * __nonnull)viewName version:(NSString * __nonnull)version mapFunction:(void (^ __nonnull)(NSDictionary<NSString *, id> * __nonnull, void (^ __nonnull)(id __nonnull, id __nullable)))mapFunction;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;

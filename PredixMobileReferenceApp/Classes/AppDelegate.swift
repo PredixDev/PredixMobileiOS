@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let bundle = NSBundle.mainBundle()
         let id : String = bundle.bundleIdentifier ?? ""
 
-        PGSDKLogger.info("Running Environment:\n     locale: \(NSLocale.currentLocale().localeIdentifier)\n     device model:\(device.model)\n     device system name:\(device.systemName)\n     device system version:\(device.systemVersion)\n     device vendor identifier:\(device.identifierForVendor!.UUIDString)\n     iOS Version: \(processInfo.operatingSystemVersionString)\n     app bundle id: \(id)\n     app build version: \(bundle.objectForInfoDictionaryKey("CFBundleShortVersionString") ?? "")\n     app version: \(bundle.objectForInfoDictionaryKey(kCFBundleVersionKey as String) ?? "")")
+        PGSDKLogger.info("Running Environment:\n     locale: \(NSLocale.currentLocale().localeIdentifier)\n     device model:\(device.model)\n     device system name:\(device.systemName)\n     device system version:\(device.systemVersion)\n     device vendor identifier:\(device.identifierForVendor!.UUIDString)\n     iOS Version: \(processInfo.operatingSystemVersionString)\n     app bundle id: \(id)\n     app build version: \(bundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as? String ?? "")\n     app version: \(bundle.objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String ?? "")\n     \(PredixMobilityConfiguration.versionInfo)")
         
         if TARGET_IPHONE_SIMULATOR == 1
         {

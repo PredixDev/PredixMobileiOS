@@ -33,3 +33,5 @@
 // Popup serious error continued error message
 "Unable to continue application" = "Unable to continue application";
 
+// Server setting is not configured
+"Initial server not configured" = "Initial server not configured.\nEnsure that you have configured your server via Settings or by running the set-pm-host script.";
