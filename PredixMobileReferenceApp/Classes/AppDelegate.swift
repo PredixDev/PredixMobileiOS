@@ -27,12 +27,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         #endif
         
+        //Disable requirement to have a passcode set on the device. This is not recommended for production systems. A device passcode is a critical security feature of iOS devices.
+        //PredixMobilityConfiguration.requireDevicePasscodeSet = false
+        
         // Pre-load configuration. This will load any Settings bundles into NSUserDefaults and set default logging levels
         PredixMobilityConfiguration.loadConfiguration()
         
         // Add optional and custom services to the system if required
         //PredixMobilityConfiguration.additionalBootServicesToRegister = [OpenURLService.self]
 
+        // Example of creating a view for full text search, assuming "body" is a property in some documents that contains a large amount of text.
+        /*
+        PredixMobilityConfiguration.appendDataViewDefinition("views/searchtext", version: "1") { (properties: [String : AnyObject], emit: (AnyObject, AnyObject?) -> ()) -> () in
+            
+            if let body = properties["body"] as? String
+            {
+                emit(FullTextSearch.createKey(body), nil)
+            }
+        }
+        */
+        
         // create the PredixMobilityManager object. This object coordinates the application state, interacts with the various services, and holds closures called during authentication.
         
         let vc : ViewController = self.window?.rootViewController as! ViewController
@@ -125,25 +139,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     
-    //MARK: Application Delegate Handlers to pass handling to PredixMobilityManager
-    
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        PredixMobilityManager.sharedInstance.applicationWillResignActive(application)
-    }
-    
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        PredixMobilityManager.sharedInstance.applicationDidEnterBackground(application)
-    }
-    
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        PredixMobilityManager.sharedInstance.applicationWillEnterForeground(application)
-    }
-    
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
@@ -154,14 +149,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return
             }
         #endif
-        
-        PredixMobilityManager.sharedInstance.applicationDidBecomeActive(application)
     }
     
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        PredixMobilityManager.sharedInstance.applicationWillTerminate(application)
-    }
+    //MARK: Notification handlers to pass to PredixMobilityManager
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         

@@ -2,16 +2,9 @@
 
 This project is the sample reference application for the Predix Mobile Container on the iOS platform.
 
-Use the Predix Mobile SDK to develop a Predix Mobile Application Container and the Predix Mobile applications that run in that container. A Mobile Application Container is a native application that includes the Predix Mobile Client Core Services framework that will load, display and run the Predix Mobile applications that you build.
-
-The Predix Mobile SDK for iOS includes the source, SDK framework and Xcode project that you use to build a Predix Mobile Application Container. In most cases the Predix Mobile Application Container has the functionality that applications need, but on the iOS platform an application development team can extend the Core Serves Framework with additional RESTful services.
-
 ##Getting Started
-### Prerequisites
-It is assumed you already have a Predix Mobile service instance, have installed the Predix Mobile command line tool, and have performed all tasks in these topics:
-* [Get Started with the Mobile Service and Mobile SDK] (https://www.predix.io/docs#rae4EfJ6) 
-* [Running the Predix Mobile Sample App] (https://www.predix.io/docs#EGUzWwcC)
-* [Creating a Mobile Hello World Webapp] (https://www.predix.io/docs#DrBWuHkl)
+### Step 0 - Prerequisites
+It is assumed you already have a Predix Mobile cloud services installation, have installed the Predix Mobile command line tool, and have followed the Getting Started examples for those repos to publish your initial Predix Mobile webapp, define your Predix Mobile app, and import the sample data. 
 
 It is also assumed you're running on a Mac, with the latest version of XCode installed.
 
@@ -19,25 +12,25 @@ A basic understanding of how to use XCode is also assumed. For help with XCode c
 
 ### Step 1 - Clone Repo
 
-Clone the repo to your Mac.
+Clone the repo to your Mac
 
 ### Step 2 - Configuration
 
-From the command line, in the cloned directory, run the script `set-pm-host.sh`.
+From the command line, in the cloned directory, run the script set-pm-host.sh.
 
-This will configure the Predix Mobile Container to your instance of Predix Mobile service backend.
+This will configure the Predix Mobile Container to your instance of Predix Mobile cloud service backend.
 
 ### Step 3 - Open the project file
 
-Open the `PredixMobileReferenceApp.xcodeproj` file in XCode.
+Open the PredixMobileReferenceApp.xcodeproj file in XCode.
 
 Written in Swift, this implementation is purposefully simple. 
 
 ### Step 4 - Validate the Predix Mobile App
 
-As one of the prerequistes, you defined a Predix Mobile App using the command line tool. The name and version of that pmapp is configured in the `info.plist` of the Predix Mobile Container.
+As one of the prerequistes, you defined a Predix Mobile App using the command line tool. The name and version of that pmapp is configured in the info.plist of the Predix Mobile Container.
 
-In XCode, find the `Info.plist` file. The plist keys `pmapp_name` and `pmapp_version` should match the values used in your `app.json` file you defined.
+In XCode, find the Info.plist file. The plist keys pmapp_name, and pmapp_version should match the values used in your app.json file you defined.
 
 By default these settings are:
 
@@ -46,7 +39,7 @@ By default these settings are:
 
 ### Step 5 - Run the project
 
-Run the project in XCode. The Predix Mobile Container should start in the simulator, and you should be presented with the Predix login screen.
+Run the project in XCode, the Predix Mobile Container should start in the simulator, and you should be presented with the Predix login screen.
 
 
 ## TroubleShooting:

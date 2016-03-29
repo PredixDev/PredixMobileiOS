@@ -35,3 +35,6 @@
 
 // Server setting is not configured
 "Initial server not configured" = "Initial server not configured.\nEnsure that you have configured your server via Settings or by running the set-pm-host script.";
+
+// Predix Mobile SDK requires a passcode (PredixMobilityConfiguration.requireDevicePasscodeSet = true), but the device does not have a passcode set.
+"Security requires device to have a passcode when locked" = "Security requires device to have a passcode when locked";

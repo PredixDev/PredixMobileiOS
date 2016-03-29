@@ -70,8 +70,6 @@ class ViewController: UIViewController, UIWebViewDelegate, PredixAppWindowProtoc
         self.webView.delegate = self
         
         PGSDKLogger.debug("\(NSStringFromClass(self.dynamicType)).\(__FUNCTION__)")
-        NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: UIReadyNotification, object: nil))
-        
     }
 
     func webViewDidStartLoad(webView: UIWebView)

@@ -34,3 +34,7 @@ typedef enum
 + (void)error:(NSString* _Nonnull)format args:(va_list)args;
 + (void)fatal:(NSString* _Nonnull)format args:(va_list)args;
 @end
+
+@interface NSString(SHA512)
+- (NSString * _Nonnull)getSHA512Hash;
+@end
