@@ -8,7 +8,7 @@
 
 import XCTest
 
-class PredixGoReferenceAppUITests: XCTestCase {
+class PredixMobileReferenceAppUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()
@@ -17,8 +17,18 @@ class PredixGoReferenceAppUITests: XCTestCase {
         
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
+
+        // if system notification pops up, dismiss
+        addUIInterruptionMonitorWithDescription("Allow Notifications Dialog") { (alert) -> Bool in
+            alert.buttons["Don\u{2019}t Allow"].tap()
+            XCUIApplication().tap()
+            return true
+        }
+
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
+        let app = XCUIApplication()
+        app.launch()
+        app.tap()
     }
     
     override func tearDown() {
@@ -29,6 +39,11 @@ class PredixGoReferenceAppUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+        // ensure we have at least some test here, so dimiss of system notifications can execute if needed
+        let app = XCUIApplication()
+        let element = app.otherElements.containingType(.ActivityIndicator, identifier:"Progress halted").childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element
+        element.tap()
     }
     
 }
