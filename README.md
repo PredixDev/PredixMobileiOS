@@ -2,31 +2,31 @@
 
 This project is the sample reference application for the Predix Mobile Container on the iOS platform.
 
+##Getting Started
+### Step 0 - Prerequisites
+It is assumed you already have a Predix Mobile cloud services installation, have installed the Predix Mobile command line tool, and have followed the Getting Started examples for those repos to publish your initial Predix Mobile webapp, define your Predix Mobile app, and import the sample data. 
 
-## Prerequisites
-It is assumed that you already have a Predix Mobile service instance, and that you have followed the steps in this documentation:
-* [Get Started with the Mobile Service and Mobile SDK] (https://www.predix.io/docs#rae4EfJ6) 
-* [Running the Predix Mobile Sample App] (https://www.predix.io/docs#EGUzWwcC) to publish your initial Predix Mobile webapp, define your Predix Mobile app, and import the sample data. 
+It is also assumed you're running on a Mac, with the latest version of XCode installed.
 
+A basic understanding of how to use XCode is also assumed. For help with XCode consult Apple's documentation.
 
+### Step 1 - Clone Repo
 
-## Step 1 - Clone Repo
+Clone the repo to your Mac
 
-Clone the repo to your Mac.
-
-## Step 2 - Configuration
+### Step 2 - Configuration
 
 From the command line, in the cloned directory, run the script set-pm-host.sh.
 
 This will configure the Predix Mobile Container to your instance of Predix Mobile cloud service backend.
 
-## Step 3 - Open the project file
+### Step 3 - Open the project file
 
 Open the PredixMobileReferenceApp.xcodeproj file in XCode.
 
 Written in Swift, this implementation is purposefully simple. 
 
-## Step 4 - Validate the Predix Mobile App
+### Step 4 - Validate the Predix Mobile App
 
 As one of the prerequistes, you defined a Predix Mobile App using the command line tool. The name and version of that pmapp is configured in the info.plist of the Predix Mobile Container.
 
@@ -37,7 +37,7 @@ By default these settings are:
     pmapp_name: Sample1
     pmapp_version:  1.0
 
-## Step 5 - Run the project
+### Step 5 - Run the project
 
 Run the project in XCode, the Predix Mobile Container should start in the simulator, and you should be presented with the Predix login screen.
 

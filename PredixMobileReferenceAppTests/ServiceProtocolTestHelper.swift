@@ -38,7 +38,7 @@ extension XCTestCase
     {
         ServiceRouter.sharedInstance.registerService(service)
         let serviceName = NSStringFromClass(service)
-        let testExpectation = self.expectationWithDescription("\(__FUNCTION__):\(serviceName)")
+        let testExpectation = self.expectationWithDescription("\(#function):\(serviceName)")
         
         ServiceRouter.sharedInstance.processRequest(request, responseBlock: { (responseOptional : NSURLResponse?) -> Void in
             

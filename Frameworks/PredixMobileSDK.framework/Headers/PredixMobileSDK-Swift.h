@@ -275,6 +275,10 @@ SWIFT_CLASS("_TtC15PredixMobileSDK27PredixMobilityConfiguration")
 + (void)setRemoteNotificationRegistrationDocumentId:(NSString * _Nonnull)value;
 + (NSString * _Nonnull)remoteNotificationRegistrationDocumentType;
 + (void)setRemoteNotificationRegistrationDocumentType:(NSString * _Nonnull)value;
++ (NSDictionary<NSString *, id> * _Nullable)replicationAdditionalPushSettings;
++ (void)setReplicationAdditionalPushSettings:(NSDictionary<NSString *, id> * _Nullable)value;
++ (NSDictionary<NSString *, id> * _Nullable)replicationAdditionalPullSettings;
++ (void)setReplicationAdditionalPullSettings:(NSDictionary<NSString *, id> * _Nullable)value;
 + (NSString * _Nullable)keychainAccessGroup;
 + (void)setKeychainAccessGroup:(NSString * _Nullable)value;
 + (NSString * _Nonnull)keychainKeyPrefix;
@@ -306,6 +310,7 @@ SWIFT_CLASS("_TtC15PredixMobileSDK21PredixMobilityManager")
 @property (nonatomic, readonly, strong) id <PredixAppWindowProtocol> _Nonnull currentWindow;
 - (nonnull instancetype)initWithPackageWindow:(id <PredixAppWindowProtocol> _Nonnull)packageWindow presentAuthentication:(id <PredixAppWindowProtocol> _Nonnull (^ _Nonnull)(id <PredixAppWindowProtocol> _Nonnull))presentAuthentication dismissAuthentication:(void (^ _Nonnull)(id <PredixAppWindowProtocol> _Nonnull))dismissAuthentication OBJC_DESIGNATED_INITIALIZER;
 - (void)showAuthentication:(NSURL * _Nonnull)URL onComplete:(void (^ _Nullable)(void))onComplete;
+- (void)showAuthentication:(NSURL * _Nonnull)URL parameters:(NSDictionary * _Nullable)parameters onComplete:(void (^ _Nullable)(void))onComplete;
 - (void)authenticationComplete;
 - (void)showPackageWindow:(NSURL * _Nonnull)URL parameters:(NSDictionary * _Nullable)parameters onComplete:(void (^ _Nullable)(void))onComplete;
 - (void)startApp;

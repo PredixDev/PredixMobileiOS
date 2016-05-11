@@ -69,7 +69,7 @@ class ViewController: UIViewController, UIWebViewDelegate, PredixAppWindowProtoc
         // Do any additional setup after loading the view, typically from a nib.
         self.webView.delegate = self
         
-        PGSDKLogger.debug("\(NSStringFromClass(self.dynamicType)).\(__FUNCTION__)")
+        PGSDKLogger.debug("\(NSStringFromClass(self.dynamicType)).\(#function)")
     }
 
     func webViewDidStartLoad(webView: UIWebView)
