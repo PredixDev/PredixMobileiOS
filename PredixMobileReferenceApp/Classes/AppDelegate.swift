@@ -73,12 +73,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // logging our current running environment
         PGSDKLogger.debug("Started app with launchOptions: \(launchOptions)")
         
+        let versionInfo = PredixMobilityConfiguration.getVersionInfo()
+        
         let processInfo = NSProcessInfo.processInfo()
         let device = UIDevice.currentDevice()
-        let bundle = NSBundle.mainBundle()
-        let id : String = bundle.bundleIdentifier ?? ""
 
-        PGSDKLogger.info("Running Environment:\n     locale: \(NSLocale.currentLocale().localeIdentifier)\n     device model:\(device.model)\n     device system name:\(device.systemName)\n     device system version:\(device.systemVersion)\n     device vendor identifier:\(device.identifierForVendor!.UUIDString)\n     iOS Version: \(processInfo.operatingSystemVersionString)\n     app bundle id: \(id)\n     app build version: \(bundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as? String ?? "")\n     app version: \(bundle.objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String ?? "")\n     \(PredixMobilityConfiguration.versionInfo)")
+        PGSDKLogger.info("Running Environment:\n     locale: \(versionInfo[VersionInfoKeys.Locale] ?? "")\n     device model:\(versionInfo[VersionInfoKeys.DeviceModel] ?? "")\n     device system name:\(versionInfo[VersionInfoKeys.DeviceOS] ?? "")\n     device system version:\(versionInfo[VersionInfoKeys.DeviceOSVersion] ?? "")\n     device vendor identifier:\(device.identifierForVendor!.UUIDString)\n     iOS Version/Build: \(processInfo.operatingSystemVersionString)\n     app bundle id: \(versionInfo[VersionInfoKeys.ApplicationBundleId] ?? "")\n     app version: \(versionInfo[VersionInfoKeys.ApplicationVersion] ?? "")\n     app build version: \(versionInfo[VersionInfoKeys.ApplicationBuildVersion] ?? "")\n     \(PredixMobilityConfiguration.versionInfo)")
         
         if TARGET_IPHONE_SIMULATOR == 1
         {

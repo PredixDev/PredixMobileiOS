@@ -1,6 +1,6 @@
 ##Predix Mobile iOS Container sample app
 
-This project is the Predix Mobile Reference App Container on the iOS platform.
+This project is the sample reference application for the Predix Mobile Container on the iOS platform.
 
 ##Getting Started
 ### Step 0 - Prerequisites
@@ -9,8 +9,6 @@ It is assumed you already have a Predix Mobile cloud services installation, have
 It is also assumed you're running on a Mac, with the latest version of XCode installed.
 
 A basic understanding of how to use XCode is also assumed. For help with XCode consult Apple's documentation.
-
-Download the latest release of the [Predix Mobile Reference App Container for iOS](https://github.com/PredixDev/PredixMobileReferenceApp/releases). 
 
 ### Step 1 - Clone Repo
 

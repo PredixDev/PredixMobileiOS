@@ -120,7 +120,11 @@ SWIFT_CLASS("_TtC15PredixMobileSDK10CDBService")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+
+/// Enumeration for specifying location of configuration elements.
 typedef SWIFT_ENUM(NSInteger, ConfigurationLocation) {
+
+/// Configuration is stored in the Settings bundle
   ConfigurationLocationsettings = 0,
   ConfigurationLocationinfoplist = 1,
 };
@@ -193,8 +197,12 @@ SWIFT_PROTOCOL("_TtP15PredixMobileSDK23PredixAppWindowProtocol_")
 @end
 
 
+
+/// Static class of elements Predix Mobile SDK consumers can adjust to configure aspects of the SDK.
 SWIFT_CLASS("_TtC15PredixMobileSDK27PredixMobilityConfiguration")
 @interface PredixMobilityConfiguration : NSObject
+
+/// Indicates the SDK will automatically listen for Application state events. Defaults to true
 + (BOOL)automaticallyListenForApplicationStateEvents;
 + (void)setAutomaticallyListenForApplicationStateEvents:(BOOL)value;
 + (PGSDKLoggerLevelEnum)defaultLoggingLevel;
@@ -289,7 +297,13 @@ SWIFT_CLASS("_TtC15PredixMobileSDK27PredixMobilityConfiguration")
 + (NSURL * _Nonnull)localStorageURL;
 + (NSURL * _Nullable)userLocalStorageURL;
 + (void)loadConfiguration;
+
+/// Helper method takes a view name and version, and map function closure, creates a ViewDefinition and adds it to the dataViewDefinitions property.
 + (void)appendDataViewDefinition:(NSString * _Nonnull)viewName version:(NSString * _Nonnull)version mapFunction:(void (^ _Nonnull)(NSDictionary<NSString *, id> * _Nonnull, void (^ _Nonnull)(id _Nonnull, id _Nullable)))mapFunction;
+
+/// Helper method takes a view name and version, and map function closure, and reduce function closure, creates a ViewDefinition and adds it to the dataViewDefinitions property.
++ (void)appendDataViewDefinition:(NSString * _Nonnull)viewName version:(NSString * _Nonnull)version mapFunction:(void (^ _Nonnull)(NSDictionary<NSString *, id> * _Nonnull, void (^ _Nonnull)(id _Nonnull, id _Nullable)))mapFunction reduceFunction:(id _Nonnull (^ _Nullable)(NSArray * _Nonnull, NSArray * _Nonnull, BOOL))reduceFunction;
++ (NSDictionary<NSString *, NSString *> * _Nonnull)getVersionInfo;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -353,6 +367,7 @@ SWIFT_CLASS("_TtC15PredixMobileSDK13ServiceRouter")
 + (id <ServiceRouterProtocol> _Nonnull)sharedInstance;
 - (BOOL)registerService:(Class <ServiceProtocol> _Nonnull)service;
 - (void)unregisterService:(Class <ServiceProtocol> _Nonnull)service;
+- (void)unregisterServiceByIdentifier:(NSString * _Nonnull)serviceId;
 - (void)processRequestWithServiceId:(NSString * _Nonnull)serviceId responseBlock:(responseReturnBlock _Nonnull)responseBlock dataBlock:(dataReturnBlock _Nonnull)dataBlock completionBlock:(requestCompleteBlock _Nonnull)completionBlock;
 - (void)processRequest:(NSString * _Nonnull)serviceId extraPath:(NSString * _Nullable)extraPath responseBlock:(responseReturnBlock _Nonnull)responseBlock dataBlock:(dataReturnBlock _Nonnull)dataBlock completionBlock:(requestCompleteBlock _Nonnull)completionBlock;
 - (void)processRequest:(NSString * _Nonnull)serviceId extraPath:(NSString * _Nullable)extraPath method:(NSString * _Nonnull)method data:(NSData * _Nullable)data responseBlock:(responseReturnBlock _Nonnull)responseBlock dataBlock:(dataReturnBlock _Nonnull)dataBlock completionBlock:(requestCompleteBlock _Nonnull)completionBlock;
