@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  PredixMobileReferenceApp
+//  PredixMobileiOS
 //
 //  Created by Johns, Andy (GE Corporate) on 8/10/15.
 //  Copyright © 2015 GE. All rights reserved.

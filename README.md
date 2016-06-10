@@ -22,7 +22,7 @@ This will configure the Predix Mobile Container to your instance of Predix Mobil
 
 ### Step 3 - Open the project file
 
-Open the PredixMobileReferenceApp.xcodeproj file in XCode.
+Open the PredixMobileiOS.xcodeproj file in XCode.
 
 Written in Swift, this implementation is purposefully simple. 
 

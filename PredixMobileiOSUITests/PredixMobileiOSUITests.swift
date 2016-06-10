@@ -8,7 +8,7 @@
 
 import XCTest
 
-class PredixMobileReferenceAppUITests: XCTestCase {
+class PredixMobileiOSUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

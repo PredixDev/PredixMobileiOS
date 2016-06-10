@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4F4409C31B78FD5C00947FCC"
-               BuildableName = "PredixMobileReferenceApp.app"
-               BlueprintName = "PredixMobileReferenceApp"
-               ReferencedContainer = "container:PredixMobileReferenceApp.xcodeproj">
+               BuildableName = "PredixMobileiOS.app"
+               BlueprintName = "PredixMobileiOS"
+               ReferencedContainer = "container:PredixMobileiOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4F4409D71B78FD5C00947FCC"
-               BuildableName = "PredixMobileReferenceAppTests.xctest"
-               BlueprintName = "PredixMobileReferenceAppTests"
-               ReferencedContainer = "container:PredixMobileReferenceApp.xcodeproj">
+               BuildableName = "PredixMobileiOSTests.xctest"
+               BlueprintName = "PredixMobileiOSTests"
+               ReferencedContainer = "container:PredixMobileiOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -44,9 +44,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4F4409E21B78FD5C00947FCC"
-               BuildableName = "PredixMobileReferenceAppUITests.xctest"
-               BlueprintName = "PredixMobileReferenceAppUITests"
-               ReferencedContainer = "container:PredixMobileReferenceApp.xcodeproj">
+               BuildableName = "PredixMobileiOSUITests.xctest"
+               BlueprintName = "PredixMobileiOSUITests"
+               ReferencedContainer = "container:PredixMobileiOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -54,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F4409C31B78FD5C00947FCC"
-            BuildableName = "PredixMobileReferenceApp.app"
-            BlueprintName = "PredixMobileReferenceApp"
-            ReferencedContainer = "container:PredixMobileReferenceApp.xcodeproj">
+            BuildableName = "PredixMobileiOS.app"
+            BlueprintName = "PredixMobileiOS"
+            ReferencedContainer = "container:PredixMobileiOS.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F4409C31B78FD5C00947FCC"
-            BuildableName = "PredixMobileReferenceApp.app"
-            BlueprintName = "PredixMobileReferenceApp"
-            ReferencedContainer = "container:PredixMobileReferenceApp.xcodeproj">
+            BuildableName = "PredixMobileiOS.app"
+            BlueprintName = "PredixMobileiOS"
+            ReferencedContainer = "container:PredixMobileiOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -122,9 +122,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F4409C31B78FD5C00947FCC"
-            BuildableName = "PredixMobileReferenceApp.app"
-            BlueprintName = "PredixMobileReferenceApp"
-            ReferencedContainer = "container:PredixMobileReferenceApp.xcodeproj">
+            BuildableName = "PredixMobileiOS.app"
+            BlueprintName = "PredixMobileiOS"
+            ReferencedContainer = "container:PredixMobileiOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

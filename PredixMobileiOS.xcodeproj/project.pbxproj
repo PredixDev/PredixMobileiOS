@@ -15,7 +15,7 @@
 		4F4409CD1B78FD5C00947FCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F4409CB1B78FD5C00947FCC /* Main.storyboard */; };
 		4F4409CF1B78FD5C00947FCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F4409CE1B78FD5C00947FCC /* Assets.xcassets */; };
 		4F4409D21B78FD5C00947FCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F4409D01B78FD5C00947FCC /* LaunchScreen.storyboard */; };
-		4F4409E81B78FD5C00947FCC /* PredixMobileReferenceAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4409E71B78FD5C00947FCC /* PredixMobileReferenceAppUITests.swift */; };
+		4F4409E81B78FD5C00947FCC /* PredixMobileiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4409E71B78FD5C00947FCC /* PredixMobileiOSUITests.swift */; };
 		4F440A041B78FE9E00947FCC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F440A031B78FE9E00947FCC /* libsqlite3.tbd */; };
 		4F440A061B78FEA500947FCC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F440A051B78FEA500947FCC /* libz.tbd */; };
 		4F7A1AF81B792A8200450950 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7A1AF51B792A8200450950 /* AppDelegate.swift */; };
@@ -34,14 +34,14 @@
 			containerPortal = 4F4409BC1B78FD5C00947FCC /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4F4409C31B78FD5C00947FCC;
-			remoteInfo = PredixMobileReferenceApp;
+			remoteInfo = PredixMobileiOS;
 		};
 		4F4409E41B78FD5C00947FCC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4F4409BC1B78FD5C00947FCC /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4F4409C31B78FD5C00947FCC;
-			remoteInfo = PredixMobileReferenceApp;
+			remoteInfo = PredixMobileiOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -65,15 +65,15 @@
 		4F1F04B31B7BCB6500F8D3C6 /* ServiceProtocolTestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProtocolTestHelper.swift; sourceTree = "<group>"; };
 		4F2805791BE27B100040733F /* PredixAppTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredixAppTests.swift; sourceTree = "<group>"; };
 		4F35DFA31BD9589100810A6E /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		4F4409C41B78FD5C00947FCC /* PredixMobileReferenceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PredixMobileReferenceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F4409C41B78FD5C00947FCC /* PredixMobileiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PredixMobileiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F4409CC1B78FD5C00947FCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F4409CE1B78FD5C00947FCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F4409D11B78FD5C00947FCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F4409D31B78FD5C00947FCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F4409D81B78FD5C00947FCC /* PredixMobileReferenceAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PredixMobileReferenceAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F4409D81B78FD5C00947FCC /* PredixMobileiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PredixMobileiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F4409DE1B78FD5C00947FCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F4409E31B78FD5C00947FCC /* PredixMobileReferenceAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PredixMobileReferenceAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F4409E71B78FD5C00947FCC /* PredixMobileReferenceAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredixMobileReferenceAppUITests.swift; sourceTree = "<group>"; };
+		4F4409E31B78FD5C00947FCC /* PredixMobileiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PredixMobileiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F4409E71B78FD5C00947FCC /* PredixMobileiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredixMobileiOSUITests.swift; sourceTree = "<group>"; };
 		4F4409E91B78FD5C00947FCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F4409FF1B78FE7B00947FCC /* PredixMobileSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PredixMobileSDK.framework; sourceTree = "<group>"; };
 		4F440A031B78FE9E00947FCC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -131,9 +131,9 @@
 			children = (
 				C88BC64E1B851D360008B92E /* Settings.bundle */,
 				4F4409FC1B78FE7B00947FCC /* Frameworks */,
-				4F4409C61B78FD5C00947FCC /* PredixMobileReferenceApp */,
-				4F4409DB1B78FD5C00947FCC /* PredixMobileReferenceAppTests */,
-				4F4409E61B78FD5C00947FCC /* PredixMobileReferenceAppUITests */,
+				4F4409C61B78FD5C00947FCC /* PredixMobileiOS */,
+				4F4409DB1B78FD5C00947FCC /* PredixMobileiOSTests */,
+				4F4409E61B78FD5C00947FCC /* PredixMobileiOSUITests */,
 				4F4409C51B78FD5C00947FCC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -141,14 +141,14 @@
 		4F4409C51B78FD5C00947FCC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4F4409C41B78FD5C00947FCC /* PredixMobileReferenceApp.app */,
-				4F4409D81B78FD5C00947FCC /* PredixMobileReferenceAppTests.xctest */,
-				4F4409E31B78FD5C00947FCC /* PredixMobileReferenceAppUITests.xctest */,
+				4F4409C41B78FD5C00947FCC /* PredixMobileiOS.app */,
+				4F4409D81B78FD5C00947FCC /* PredixMobileiOSTests.xctest */,
+				4F4409E31B78FD5C00947FCC /* PredixMobileiOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4F4409C61B78FD5C00947FCC /* PredixMobileReferenceApp */ = {
+		4F4409C61B78FD5C00947FCC /* PredixMobileiOS */ = {
 			isa = PBXGroup;
 			children = (
 				4F1527CF1BA3A58800A335D2 /* CouchbaseLite */,
@@ -160,10 +160,10 @@
 				4F1F049E1B7BA39500F8D3C6 /* www */,
 				4FA08DCD1BBB355A006FD087 /* Localizable.strings */,
 			);
-			path = PredixMobileReferenceApp;
+			path = PredixMobileiOS;
 			sourceTree = "<group>";
 		};
-		4F4409DB1B78FD5C00947FCC /* PredixMobileReferenceAppTests */ = {
+		4F4409DB1B78FD5C00947FCC /* PredixMobileiOSTests */ = {
 			isa = PBXGroup;
 			children = (
 				4F4409DE1B78FD5C00947FCC /* Info.plist */,
@@ -171,16 +171,16 @@
 				4F1F04B31B7BCB6500F8D3C6 /* ServiceProtocolTestHelper.swift */,
 				4F35DFA31BD9589100810A6E /* TestViewController.swift */,
 			);
-			path = PredixMobileReferenceAppTests;
+			path = PredixMobileiOSTests;
 			sourceTree = "<group>";
 		};
-		4F4409E61B78FD5C00947FCC /* PredixMobileReferenceAppUITests */ = {
+		4F4409E61B78FD5C00947FCC /* PredixMobileiOSUITests */ = {
 			isa = PBXGroup;
 			children = (
-				4F4409E71B78FD5C00947FCC /* PredixMobileReferenceAppUITests.swift */,
+				4F4409E71B78FD5C00947FCC /* PredixMobileiOSUITests.swift */,
 				4F4409E91B78FD5C00947FCC /* Info.plist */,
 			);
-			path = PredixMobileReferenceAppUITests;
+			path = PredixMobileiOSUITests;
 			sourceTree = "<group>";
 		};
 		4F4409FC1B78FE7B00947FCC /* Frameworks */ = {
@@ -208,9 +208,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4F4409C31B78FD5C00947FCC /* PredixMobileReferenceApp */ = {
+		4F4409C31B78FD5C00947FCC /* PredixMobileiOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F4409EC1B78FD5C00947FCC /* Build configuration list for PBXNativeTarget "PredixMobileReferenceApp" */;
+			buildConfigurationList = 4F4409EC1B78FD5C00947FCC /* Build configuration list for PBXNativeTarget "PredixMobileiOS" */;
 			buildPhases = (
 				4F4409C01B78FD5C00947FCC /* Sources */,
 				4F4409C11B78FD5C00947FCC /* Frameworks */,
@@ -222,14 +222,14 @@
 			);
 			dependencies = (
 			);
-			name = PredixMobileReferenceApp;
-			productName = PredixMobileReferenceApp;
-			productReference = 4F4409C41B78FD5C00947FCC /* PredixMobileReferenceApp.app */;
+			name = PredixMobileiOS;
+			productName = PredixMobileiOS;
+			productReference = 4F4409C41B78FD5C00947FCC /* PredixMobileiOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4F4409D71B78FD5C00947FCC /* PredixMobileReferenceAppTests */ = {
+		4F4409D71B78FD5C00947FCC /* PredixMobileiOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F4409EF1B78FD5C00947FCC /* Build configuration list for PBXNativeTarget "PredixMobileReferenceAppTests" */;
+			buildConfigurationList = 4F4409EF1B78FD5C00947FCC /* Build configuration list for PBXNativeTarget "PredixMobileiOSTests" */;
 			buildPhases = (
 				4F4409D41B78FD5C00947FCC /* Sources */,
 				4F4409D51B78FD5C00947FCC /* Frameworks */,
@@ -240,14 +240,14 @@
 			dependencies = (
 				4F4409DA1B78FD5C00947FCC /* PBXTargetDependency */,
 			);
-			name = PredixMobileReferenceAppTests;
-			productName = PredixMobileReferenceAppTests;
-			productReference = 4F4409D81B78FD5C00947FCC /* PredixMobileReferenceAppTests.xctest */;
+			name = PredixMobileiOSTests;
+			productName = PredixMobileiOSTests;
+			productReference = 4F4409D81B78FD5C00947FCC /* PredixMobileiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4F4409E21B78FD5C00947FCC /* PredixMobileReferenceAppUITests */ = {
+		4F4409E21B78FD5C00947FCC /* PredixMobileiOSUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F4409F21B78FD5C00947FCC /* Build configuration list for PBXNativeTarget "PredixMobileReferenceAppUITests" */;
+			buildConfigurationList = 4F4409F21B78FD5C00947FCC /* Build configuration list for PBXNativeTarget "PredixMobileiOSUITests" */;
 			buildPhases = (
 				4F4409DF1B78FD5C00947FCC /* Sources */,
 				4F4409E01B78FD5C00947FCC /* Frameworks */,
@@ -258,9 +258,9 @@
 			dependencies = (
 				4F4409E51B78FD5C00947FCC /* PBXTargetDependency */,
 			);
-			name = PredixMobileReferenceAppUITests;
-			productName = PredixMobileReferenceAppUITests;
-			productReference = 4F4409E31B78FD5C00947FCC /* PredixMobileReferenceAppUITests.xctest */;
+			name = PredixMobileiOSUITests;
+			productName = PredixMobileiOSUITests;
+			productReference = 4F4409E31B78FD5C00947FCC /* PredixMobileiOSUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -286,7 +286,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4F4409BF1B78FD5C00947FCC /* Build configuration list for PBXProject "PredixMobileReferenceApp" */;
+			buildConfigurationList = 4F4409BF1B78FD5C00947FCC /* Build configuration list for PBXProject "PredixMobileiOS" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -299,9 +299,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4F4409C31B78FD5C00947FCC /* PredixMobileReferenceApp */,
-				4F4409D71B78FD5C00947FCC /* PredixMobileReferenceAppTests */,
-				4F4409E21B78FD5C00947FCC /* PredixMobileReferenceAppUITests */,
+				4F4409C31B78FD5C00947FCC /* PredixMobileiOS */,
+				4F4409D71B78FD5C00947FCC /* PredixMobileiOSTests */,
+				4F4409E21B78FD5C00947FCC /* PredixMobileiOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -376,7 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F4409E81B78FD5C00947FCC /* PredixMobileReferenceAppUITests.swift in Sources */,
+				4F4409E81B78FD5C00947FCC /* PredixMobileiOSUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,12 +385,12 @@
 /* Begin PBXTargetDependency section */
 		4F4409DA1B78FD5C00947FCC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4F4409C31B78FD5C00947FCC /* PredixMobileReferenceApp */;
+			target = 4F4409C31B78FD5C00947FCC /* PredixMobileiOS */;
 			targetProxy = 4F4409D91B78FD5C00947FCC /* PBXContainerItemProxy */;
 		};
 		4F4409E51B78FD5C00947FCC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4F4409C31B78FD5C00947FCC /* PredixMobileReferenceApp */;
+			target = 4F4409C31B78FD5C00947FCC /* PredixMobileiOS */;
 			targetProxy = 4F4409E41B78FD5C00947FCC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -527,12 +527,12 @@
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
-				INFOPLIST_FILE = PredixMobileReferenceApp/Info.plist;
+				INFOPLIST_FILE = PredixMobileiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ge.ent.PredixMobileReferenceApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ge.ent.PredixMobileiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PRODUCT_NAME)";
@@ -556,12 +556,12 @@
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
-				INFOPLIST_FILE = PredixMobileReferenceApp/Info.plist;
+				INFOPLIST_FILE = PredixMobileiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ge.ent.PredixMobileReferenceApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ge.ent.PredixMobileiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PRODUCT_NAME)";
@@ -577,14 +577,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/**",
 				);
-				INFOPLIST_FILE = PredixMobileReferenceAppTests/Info.plist;
+				INFOPLIST_FILE = PredixMobileiOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks/**";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileReferenceAppTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PredixMobileReferenceApp.app/PredixMobileReferenceApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PredixMobileiOS.app/PredixMobileiOS";
 			};
 			name = Debug;
 		};
@@ -597,25 +597,25 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/**",
 				);
-				INFOPLIST_FILE = PredixMobileReferenceAppTests/Info.plist;
+				INFOPLIST_FILE = PredixMobileiOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks/**";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileReferenceAppTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PredixMobileReferenceApp.app/PredixMobileReferenceApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PredixMobileiOS.app/PredixMobileiOS";
 			};
 			name = Release;
 		};
 		4F4409F31B78FD5C00947FCC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = PredixMobileReferenceAppUITests/Info.plist;
+				INFOPLIST_FILE = PredixMobileiOSUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileReferenceAppUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileiOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = PredixMobileReferenceApp;
+				TEST_TARGET_NAME = PredixMobileiOS;
 				USES_XCTRUNNER = YES;
 			};
 			name = Debug;
@@ -623,11 +623,11 @@
 		4F4409F41B78FD5C00947FCC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = PredixMobileReferenceAppUITests/Info.plist;
+				INFOPLIST_FILE = PredixMobileiOSUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileReferenceAppUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileiOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = PredixMobileReferenceApp;
+				TEST_TARGET_NAME = PredixMobileiOS;
 				USES_XCTRUNNER = YES;
 			};
 			name = Release;
@@ -635,7 +635,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4F4409BF1B78FD5C00947FCC /* Build configuration list for PBXProject "PredixMobileReferenceApp" */ = {
+		4F4409BF1B78FD5C00947FCC /* Build configuration list for PBXProject "PredixMobileiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F4409EA1B78FD5C00947FCC /* Debug */,
@@ -644,7 +644,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F4409EC1B78FD5C00947FCC /* Build configuration list for PBXNativeTarget "PredixMobileReferenceApp" */ = {
+		4F4409EC1B78FD5C00947FCC /* Build configuration list for PBXNativeTarget "PredixMobileiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F4409ED1B78FD5C00947FCC /* Debug */,
@@ -653,7 +653,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F4409EF1B78FD5C00947FCC /* Build configuration list for PBXNativeTarget "PredixMobileReferenceAppTests" */ = {
+		4F4409EF1B78FD5C00947FCC /* Build configuration list for PBXNativeTarget "PredixMobileiOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F4409F01B78FD5C00947FCC /* Debug */,
@@ -662,7 +662,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F4409F21B78FD5C00947FCC /* Build configuration list for PBXNativeTarget "PredixMobileReferenceAppUITests" */ = {
+		4F4409F21B78FD5C00947FCC /* Build configuration list for PBXNativeTarget "PredixMobileiOSUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F4409F31B78FD5C00947FCC /* Debug */,

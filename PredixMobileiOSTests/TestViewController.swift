@@ -1,6 +1,6 @@
 //
 //  TestViewController.swift
-//  PredixMobileReferenceApp
+//  PredixMobileiOS
 //
 //  Created by Johns, Andy (GE Corporate) on 10/22/15.
 //  Copyright © 2015 GE. All rights reserved.

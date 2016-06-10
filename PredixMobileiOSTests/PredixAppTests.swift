@@ -1,13 +1,13 @@
 //
 //  PredixAppTests.swift
-//  PredixMobileReferenceApp
+//  PredixMobileiOS
 //
 //  Created by Johns, Andy (GE Corporate) on 10/29/15.
 //  Copyright © 2015 GE. All rights reserved.
 //
 
 import XCTest
-@testable import PredixMobileReferenceApp
+@testable import PredixMobileiOS
 import PredixMobileSDK
 
 class PredixAppTests: XCTestCase {

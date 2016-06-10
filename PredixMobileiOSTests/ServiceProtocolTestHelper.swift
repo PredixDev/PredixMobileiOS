@@ -1,13 +1,13 @@
 //
 //  ServiceProtocolTestHelper.swift
-//  PredixMobileReferenceApp
+//  PredixMobileiOS
 //
 //  Created by Johns, Andy (GE Corporate) on 8/12/15.
 //  Copyright © 2015 GE. All rights reserved.
 //
 
 import Foundation
-import PredixMobileReferenceApp
+import PredixMobileiOS
 import PredixMobileSDK
 import XCTest
 
