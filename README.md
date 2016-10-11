@@ -12,7 +12,7 @@ It is assumed you already have a Predix Mobile cloud services installation, have
 It is also assumed you're running on a Mac, with XCode version 7.3 installed.
 
 ## Download the Container and Start the App
-See 
+
 * [Downloading the iOS Predix Mobile App Container] (https://www.predix.io/docs#F30gVeYB)
 * [Starting your iOS Sample App] (https://www.predix.io/docs/?r=205683#cKwF3PlW)
 
