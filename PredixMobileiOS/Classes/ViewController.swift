@@ -19,36 +19,36 @@ class ViewController: UIViewController, UIWebViewDelegate, PredixAppWindowProtoc
     
     var webViewFinishedLoad : (()->())?
     
-    func loadURL(URL: NSURL, parameters: [NSObject : AnyObject]?, onComplete: (()->())?)
+    func loadURL(_ URL: Foundation.URL, parameters: [AnyHashable: Any]?, onComplete: (()->())?)
     {
         if let onComplete = onComplete
         {
             self.webViewFinishedLoad = onComplete
         }
         
-        self.webView.scrollView.scrollEnabled = true
-        if let params = parameters, scrollStateString = params["nativeScroll"] as? String where scrollStateString == "false"
+        self.webView.scrollView.isScrollEnabled = true
+        if let params = parameters, let scrollStateString = params["nativeScroll"] as? String, scrollStateString == "false"
         {
-            self.webView.scrollView.scrollEnabled = false
+            self.webView.scrollView.isScrollEnabled = false
         }
 
-        self.webView.loadRequest(NSURLRequest(URL:URL))
+        self.webView.loadRequest(URLRequest(url:URL))
     }
     
-    func updateWaitState(state: WaitState, message: String?)
+    func updateWaitState(_ state: WaitState, message: String?)
     {
         switch state
         {
-        case .NotWaiting :
+        case .notWaiting :
             self.spinner.stopAnimating()
-            self.spinner.hidden = true
+            self.spinner.isHidden = true
             self.spinnerLabel.text = nil
-            self.spinnerLabel.hidden = true
+            self.spinnerLabel.isHidden = true
             
-        case .Waiting :
+        case .waiting :
             
-            self.spinner.hidden = false
-            self.spinnerLabel.hidden = false
+            self.spinner.isHidden = false
+            self.spinnerLabel.isHidden = false
             self.spinner.startAnimating()
             self.spinnerLabel.text = message
         }
@@ -56,12 +56,12 @@ class ViewController: UIViewController, UIWebViewDelegate, PredixAppWindowProtoc
     
     func waitState()->(WaitStateReturn)
     {
-        return WaitStateReturn(state: self.spinner.hidden ? .NotWaiting : .Waiting, message: self.spinnerLabel.text)
+        return WaitStateReturn(state: self.spinner.isHidden ? .notWaiting : .waiting, message: self.spinnerLabel.text)
     }
     
-    func receiveAppNotification(script: String)
+    func receiveAppNotification(_ script: String)
     {
-        self.webView.stringByEvaluatingJavaScriptFromString(script)
+        self.webView.stringByEvaluatingJavaScript(from: script)
     }
     
     override func viewDidLoad() {
@@ -69,32 +69,32 @@ class ViewController: UIViewController, UIWebViewDelegate, PredixAppWindowProtoc
         // Do any additional setup after loading the view, typically from a nib.
         self.webView.delegate = self
         
-        PGSDKLogger.debug("\(NSStringFromClass(self.dynamicType)).\(#function)")
+        Logger.debug("\(NSStringFromClass(type(of: self))).\(#function)")
     }
 
-    func webViewDidStartLoad(webView: UIWebView)
+    func webViewDidStartLoad(_ webView: UIWebView)
     {
-        PGSDKLogger.trace("Web view starting load")
+        Logger.trace("Web view starting load")
         self.spinner.startAnimating()
     }
 
-    func webViewDidFinishLoad(webView: UIWebView)
+    func webViewDidFinishLoad(_ webView: UIWebView)
     {
         
-        if let request = webView.request, cachedResponse = NSURLCache.sharedURLCache().cachedResponseForRequest(request), response = cachedResponse.response as? NSHTTPURLResponse
+        if let request = webView.request, let cachedResponse = URLCache.shared.cachedResponse(for: request), let response = cachedResponse.response as? HTTPURLResponse
         {
             if response.statusCode > 399
             {
-                PGSDKLogger.error("Web view response error code: \(response.statusCode)")
+                Logger.error("Web view response error code: \(response.statusCode)")
                 if self.isAuthenticationView
                 {
-                    PGSDKLogger.error("Web view page load error (\(response.statusCode)) while autheticating. Aborting authentication")
+                    Logger.error("Web view page load error (\(response.statusCode)) while autheticating. Aborting authentication")
                     PredixMobilityManager.sharedInstance.authenticationComplete()
                 }
             }
         }
 
-        PGSDKLogger.trace("Web view finished load")
+        Logger.trace("Web view finished load")
         self.spinner.stopAnimating()
         if let webViewFinishedLoad = self.webViewFinishedLoad
         {
@@ -103,24 +103,27 @@ class ViewController: UIViewController, UIWebViewDelegate, PredixAppWindowProtoc
         }
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError errorOptional: NSError?)
+    func webView(_ webView: UIWebView, didFailLoadWithError err: Error)
     {
         self.spinner.stopAnimating()
         
-        guard let error = errorOptional else
-        {
-            // no error object, nothing to do...
-            return
-        }
+        let error = err as NSError
         
         // Ignore cancelled and "Frame Load Interrupted" errors
         if error.code == NSURLErrorCancelled {return}
         if error.code == 102 && error.domain == "WebKitErrorDomain" {return}
 
-        PGSDKLogger.debug("Web view encountered loading error: \(error.description)")
+        if(isAuthenticationView) {
+            Logger.error("Web view page load error (\(error)) while autheticating. Aborting authentication")
+            PredixMobilityManager.sharedInstance.authenticationComplete()
+        }
+        Logger.debug("Web view encountered loading error: \(error.description)")
         ShowSeriousErrorHelper.ShowUserError(error.localizedDescription)
-        
-
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        self.webView.delegate = nil
+        super.dismiss(animated: flag, completion: completion)
     }
 
 }

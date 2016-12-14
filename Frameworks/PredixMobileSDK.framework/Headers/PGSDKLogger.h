@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 #import "PGSDKLogProvider.h"
 
-typedef void (^PDSDKLogLineWriter) (NSString* _Nonnull format, va_list args);
+typedef void (^PDSDKLogLineWriter) (NSString* _Nonnull format, va_list args) __deprecated;
 
 typedef enum
 {
@@ -17,8 +17,10 @@ typedef enum
     PGSDKLoggerLevelInfo = 4,
     PGSDKLoggerLevelDebug = 5,
     PGSDKLoggerLevelTrace = 6
-} PGSDKLoggerLevelEnum;
+} PGSDKLoggerLevelEnum __deprecated_msg("use LoggingLevel instead.");
 
+/** PGSDKLogger is deprecated: Use Logger instead. */
+__deprecated_msg("use Logger instead.")
 @interface PGSDKLogger : NSObject<PGSDKLogProvider>
 +(void) setLogLineWriterBlock: (_Nullable PDSDKLogLineWriter) writerBlock;
 +(void) setLoggerLevel: (PGSDKLoggerLevelEnum) value;
@@ -27,14 +29,12 @@ typedef enum
 @end
 
 @interface PGSDKLogger(internal)
-+ (void)trace:(NSString* _Nonnull)format args:(va_list)args;
-+ (void)debug:(NSString* _Nonnull)format args:(va_list)args;
-+ (void)info:(NSString* _Nonnull)format args:(va_list)args;
-+ (void)warn:(NSString* _Nonnull)format args:(va_list)args;
-+ (void)error:(NSString* _Nonnull)format args:(va_list)args;
-+ (void)fatal:(NSString* _Nonnull)format args:(va_list)args;
++ (void)trace:(NSString* _Nonnull)format args:(va_list)args __deprecated_msg("use Logger instead.");
++ (void)debug:(NSString* _Nonnull)format args:(va_list)args __deprecated_msg("use Logger instead.");
++ (void)info:(NSString* _Nonnull)format args:(va_list)args __deprecated_msg("use Logger instead.");
++ (void)warn:(NSString* _Nonnull)format args:(va_list)args __deprecated_msg("use Logger instead.");
++ (void)error:(NSString* _Nonnull)format args:(va_list)args __deprecated_msg("use Logger instead.");
++ (void)fatal:(NSString* _Nonnull)format args:(va_list)args __deprecated_msg("use Logger instead.");
 @end
 
-@interface NSString(SHA512)
-- (NSString * _Nonnull)getSHA512Hash;
-@end
+

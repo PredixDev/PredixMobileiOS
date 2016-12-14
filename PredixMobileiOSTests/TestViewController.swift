@@ -12,20 +12,20 @@ import PredixMobileSDK
 
 class TestViewController : UIViewController, PredixAppWindowProtocol
 {
-    var loadedURL : NSURL?
-    var loadedParameters : [NSObject : AnyObject]?
-    var savedWaitState :WaitState = WaitState.NotWaiting
+    var loadedURL : URL?
+    var loadedParameters : [AnyHashable: Any]?
+    var savedWaitState :WaitState = WaitState.notWaiting
     var savedWaitStateMessage : String?
     
     var viewController: UIViewController {get{ return self}}
     
-    func loadURL(URL: NSURL, parameters: [NSObject : AnyObject]?, onComplete: (()->())?)
+    func loadURL(_ URL: Foundation.URL, parameters: [AnyHashable: Any]?, onComplete: (()->())?)
     {
         self.loadedURL = URL
         self.loadedParameters = parameters
         let notificationName = "TestViewController.LoadedURL"
-        PGSDKLogger.info("Posting notification: \(notificationName)")
-        NSNotificationCenter.defaultCenter().postNotificationName(notificationName, object: self)
+        Logger.info("Posting notification: \(notificationName)")
+        NotificationCenter.default.post(name: Notification.Name(rawValue: notificationName), object: self)
         
         if let onComplete = onComplete
         {
@@ -33,7 +33,7 @@ class TestViewController : UIViewController, PredixAppWindowProtocol
         }
     }
     
-    func updateWaitState(state: WaitState, message: String?)
+    func updateWaitState(_ state: WaitState, message: String?)
     {
         self.savedWaitState = state
         self.savedWaitStateMessage = message

@@ -25,7 +25,8 @@
 		4F842ED21B8E7048003873A3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F842ED11B8E7048003873A3 /* CFNetwork.framework */; };
 		4FA08DCF1BBB355A006FD087 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FA08DCD1BBB355A006FD087 /* Localizable.strings */; };
 		4FE6B2C31B87D48D00A56F50 /* PredixMobileSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4409FF1B78FE7B00947FCC /* PredixMobileSDK.framework */; };
-		C88BC64F1B851D360008B92E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C88BC64E1B851D360008B92E /* Settings.bundle */; };
+		4FF338731DD511FF00057499 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4FF338721DD511FF00057499 /* Settings.bundle */; };
+		4FF338751DD5120500057499 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FF338741DD5120500057499 /* Entitlements.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,9 +68,9 @@
 		4F35DFA31BD9589100810A6E /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		4F4409C41B78FD5C00947FCC /* PredixMobileiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PredixMobileiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F4409CC1B78FD5C00947FCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4F4409CE1B78FD5C00947FCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F4409CE1B78FD5C00947FCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = PredixMobileiOS/Assets.xcassets; sourceTree = "<group>"; };
 		4F4409D11B78FD5C00947FCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4F4409D31B78FD5C00947FCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F4409D31B78FD5C00947FCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PredixMobileiOS/Info.plist; sourceTree = "<group>"; };
 		4F4409D81B78FD5C00947FCC /* PredixMobileiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PredixMobileiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F4409DE1B78FD5C00947FCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F4409E31B78FD5C00947FCC /* PredixMobileiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PredixMobileiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,7 +85,8 @@
 		4F842ECF1B8E7040003873A3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4F842ED11B8E7048003873A3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		4FA08DCE1BBB355A006FD087 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C88BC64E1B851D360008B92E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		4FF338721DD511FF00057499 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = PredixMobileiOS/Settings.bundle; sourceTree = "<group>"; };
+		4FF338741DD5120500057499 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = PredixMobileiOS/Entitlements.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +131,6 @@
 		4F4409BB1B78FD5C00947FCC = {
 			isa = PBXGroup;
 			children = (
-				C88BC64E1B851D360008B92E /* Settings.bundle */,
 				4F4409FC1B78FE7B00947FCC /* Frameworks */,
 				4F4409C61B78FD5C00947FCC /* PredixMobileiOS */,
 				4F4409DB1B78FD5C00947FCC /* PredixMobileiOSTests */,
@@ -151,14 +152,12 @@
 		4F4409C61B78FD5C00947FCC /* PredixMobileiOS */ = {
 			isa = PBXGroup;
 			children = (
+				4FF338761DD5120B00057499 /* Supporting Files */,
 				4F1527CF1BA3A58800A335D2 /* CouchbaseLite */,
 				4F7A1AF41B792A8200450950 /* Classes */,
 				4F4409CB1B78FD5C00947FCC /* Main.storyboard */,
-				4F4409CE1B78FD5C00947FCC /* Assets.xcassets */,
 				4F4409D01B78FD5C00947FCC /* LaunchScreen.storyboard */,
-				4F4409D31B78FD5C00947FCC /* Info.plist */,
 				4F1F049E1B7BA39500F8D3C6 /* www */,
-				4FA08DCD1BBB355A006FD087 /* Localizable.strings */,
 			);
 			path = PredixMobileiOS;
 			sourceTree = "<group>";
@@ -203,6 +202,19 @@
 				4F7A1AF71B792A8200450950 /* ViewController.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		4FF338761DD5120B00057499 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4FA08DCD1BBB355A006FD087 /* Localizable.strings */,
+				4F4409CE1B78FD5C00947FCC /* Assets.xcassets */,
+				4F4409D31B78FD5C00947FCC /* Info.plist */,
+				4FF338741DD5120500057499 /* Entitlements.plist */,
+				4FF338721DD511FF00057499 /* Settings.bundle */,
+			);
+			name = "Supporting Files";
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,19 +281,24 @@
 		4F4409BC1B78FD5C00947FCC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = GE;
 				TargetAttributes = {
 					4F4409C31B78FD5C00947FCC = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = BNHQX767J6;
+						DevelopmentTeam = H62B4T98ND;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 					};
 					4F4409D71B78FD5C00947FCC = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 						TestTargetID = 4F4409C31B78FD5C00947FCC;
 					};
 					4F4409E21B78FD5C00947FCC = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0810;
 						TestTargetID = 4F4409C31B78FD5C00947FCC;
 					};
 				};
@@ -311,12 +328,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FF338751DD5120500057499 /* Entitlements.plist in Resources */,
 				4F1F049F1B7BA39500F8D3C6 /* www in Resources */,
 				4F4409D21B78FD5C00947FCC /* LaunchScreen.storyboard in Resources */,
-				C88BC64F1B851D360008B92E /* Settings.bundle in Resources */,
 				4F4409CF1B78FD5C00947FCC /* Assets.xcassets in Resources */,
 				4F4409CD1B78FD5C00947FCC /* Main.storyboard in Resources */,
 				4FA08DCF1BBB355A006FD087 /* Localizable.strings in Resources */,
+				4FF338731DD511FF00057499 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +366,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+			shellScript = "exit 0\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -418,6 +436,7 @@
 				4FA08DCE1BBB355A006FD087 /* Base */,
 			);
 			name = Localizable.strings;
+			path = PredixMobileiOS;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -436,10 +455,13 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -484,10 +506,13 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -507,6 +532,7 @@
 					"-all_load",
 				);
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -515,10 +541,12 @@
 		4F4409ED1B78FD5C00947FCC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator10.1]" = $SRCROOT/$PRODUCT_NAME/Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = H62B4T98ND;
 				ENABLE_BITCODE = NO;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -528,36 +556,38 @@
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				INFOPLIST_FILE = PredixMobileiOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ge.ent.PredixMobileiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PRODUCT_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		4F4409EE1B78FD5C00947FCC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = H62B4T98ND;
 				ENABLE_BITCODE = NO;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/**",
-					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				INFOPLIST_FILE = PredixMobileiOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
@@ -565,6 +595,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PRODUCT_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -573,6 +604,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/**",
@@ -584,6 +616,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PredixMobileiOS.app/PredixMobileiOS";
 			};
 			name = Debug;
@@ -593,6 +626,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/**",
@@ -604,6 +638,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PredixMobileiOS.app/PredixMobileiOS";
 			};
 			name = Release;
@@ -615,6 +650,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileiOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = PredixMobileiOS;
 				USES_XCTRUNNER = YES;
 			};
@@ -627,6 +663,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ge.PredixMobileiOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = PredixMobileiOS;
 				USES_XCTRUNNER = YES;
 			};

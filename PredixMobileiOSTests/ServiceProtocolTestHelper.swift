@@ -28,21 +28,21 @@ extension XCTestCase
         })
     }
     
-    func serviceTester(service: ServiceProtocol.Type, path: String, expectedStatusCode: HTTPStatusCode, testResponse testResponseOptional: ((NSURLResponse) -> Void)?, testData testDataOptional: ((NSData) -> Void)?)
+    func serviceTester(_ service: ServiceProtocol.Type, path: String, expectedStatusCode: HTTPStatusCode, testResponse testResponseOptional: ((URLResponse) -> Void)?, testData testDataOptional: ((Data) -> Void)?)
     {
-        let request = NSURLRequest(URL: NSURL(string: path)!)
+        let request = URLRequest(url: URL(string: path)!)
         serviceTester(service, request: request, expectedStatusCode: expectedStatusCode, testResponse: testResponseOptional, testData: testDataOptional)
     }
     
-    func serviceTester(service: ServiceProtocol.Type, request: NSURLRequest, expectedStatusCode: HTTPStatusCode, testResponse testResponseOptional: ((NSURLResponse) -> Void)?, testData testDataOptional: ((NSData) -> Void)?)
+    func serviceTester(_ service: ServiceProtocol.Type, request: URLRequest, expectedStatusCode: HTTPStatusCode, testResponse testResponseOptional: ((URLResponse) -> Void)?, testData testDataOptional: ((Data) -> Void)?)
     {
         ServiceRouter.sharedInstance.registerService(service)
         let serviceName = NSStringFromClass(service)
-        let testExpectation = self.expectationWithDescription("\(#function):\(serviceName)")
+        let testExpectation = self.expectation(description: "\(#function):\(serviceName)")
         
-        ServiceRouter.sharedInstance.processRequest(request, responseBlock: { (responseOptional : NSURLResponse?) -> Void in
+        ServiceRouter.sharedInstance.processRequest(request, responseBlock: { (responseOptional : URLResponse?) -> Void in
             
-            if let response = responseOptional as? NSHTTPURLResponse
+            if let response = responseOptional as? HTTPURLResponse
             {
                 XCTAssertEqual(response.statusCode, expectedStatusCode.rawValue, "Response status code was different from expected")
                 if let testResponse = testResponseOptional
@@ -55,7 +55,7 @@ extension XCTestCase
                 XCTAssert(false, "\(serviceName) service returned nil response")
             }
             
-            }, dataBlock: { (dataOptional : NSData?) -> Void in
+            }, dataBlock: { (dataOptional : Data?) -> Void in
                 
                 if let testData = testDataOptional
                 {
@@ -73,19 +73,19 @@ extension XCTestCase
                 testExpectation.fulfill()
         })
         
-        self.waitForExpectationsWithTimeout(20, handler: nil)
+        self.waitForExpectations(timeout: 20, handler: nil)
         ServiceRouter.sharedInstance.unregisterService(service)
     }
     
-    func userDataURL() -> NSURL
+    func userDataURL() -> URL
     {
-        var appSupportURL = NSFileManager.defaultManager().URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)[0]
+        var appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         
-        if let bundleId = NSBundle.mainBundle().bundleIdentifier
+        if let bundleId = Bundle.main.bundleIdentifier
         {
-            appSupportURL = appSupportURL.URLByAppendingPathComponent(bundleId)
+            appSupportURL = appSupportURL.appendingPathComponent(bundleId)
         }
         
-        return appSupportURL.URLByAppendingPathComponent("UserData")
+        return appSupportURL.appendingPathComponent("UserData")
     }
 }

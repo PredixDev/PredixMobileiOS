@@ -19,7 +19,7 @@ class PredixMobileiOSUITests: XCTestCase {
         continueAfterFailure = false
 
         // if system notification pops up, dismiss
-        addUIInterruptionMonitorWithDescription("Allow Notifications Dialog") { (alert) -> Bool in
+        addUIInterruptionMonitor(withDescription: "Allow Notifications Dialog") { (alert) -> Bool in
             alert.buttons["Don\u{2019}t Allow"].tap()
             XCUIApplication().tap()
             return true
@@ -40,10 +40,8 @@ class PredixMobileiOSUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
 
-        // ensure we have at least some test here, so dimiss of system notifications can execute if needed
-        let app = XCUIApplication()
-        let element = app.otherElements.containingType(.ActivityIndicator, identifier:"Progress halted").childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element
-        element.tap()
+
     }
+
     
 }
