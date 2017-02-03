@@ -139,6 +139,124 @@ typedef SWIFT_ENUM(NSInteger, ConfigurationLocation) {
 
 
 /**
+  Database interaction class. Controls setup of replication, access to documents, manipulation of attachments, etc.
+*/
+SWIFT_CLASS("_TtC15PredixMobileSDK15DatabaseManager")
+@interface DatabaseManager : NSObject
+/**
+  Associates given filter name and filter parameters with push (client to server) replication
+  seealso:
+  \code
+  PredixMobilityConfiguration.pushReplicationFilterDefinitions
+  \endcode
+  \param filterName name of filter. This filter must be defined in PredixMobilityConfiguration.pushReplicationFilterDefinitions
+
+  \param parameters Dictionary of filter parameters passed to filter function.
+
+  \param onComplete Closure called when assignment of filter is complete consisting of:
+
+  \param success will be false if filterName is not defined in PredixMobilityConfiguration.pushReplicationFilterDefinitions, otherwise true.
+
+  \param error nil, or containing the error that occurred if success is false
+
+*/
++ (void)assignFilterToPushReplicationWithFilterName:(NSString * _Nonnull)filterName parameters:(NSDictionary<NSString *, id> * _Nullable)parameters onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable))onComplete;
+/**
+  Adds or removes given channel names to pull (server to client) replication
+  \param channelsToAdd String array of channels to add. Pull replication will be restricted to only these channels
+
+  \param channelsToRemove String array of channels to remove. Removing all channels will allow replication of all data to which the user has access.
+
+  \param onComplete Closure called when assignment of channels is complete consisting of:
+
+  \param success will only be false if both channelsToAdd and channelsToRemove is nil or an empty array.
+
+  \param error nil, or containing the error that occurred if success is false
+
+*/
++ (void)updatePullReplicationChannelsWithChannelsToAdd:(NSArray<NSString *> * _Nullable)channelsToAdd channelsToRemove:(NSArray<NSString *> * _Nullable)channelsToRemove onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable))onComplete;
+/**
+  Removes all channel names for pull (server to client) replication
+  \param onComplete Closure called when assignment of channels is complete consisting of:
+
+  \param success true if the channels were removed successfully
+
+  \param error nil, or containing the error that occurred if success is false
+
+*/
++ (void)removeAllPullReplicationChannelsOnComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable))onComplete;
+/**
+  Returns a document from the database.
+  Note, that if a document with the provided document id does not exist, the success return value in the onComplete closure will still be true, but the returned document dictionary will be nil.
+  \param withId Document Id of document to retrieve
+
+  \param fromDatabase Optional name of database. If included must match PredixMobilityConfiguration.defaultDatabaseName or be token “~”
+
+  \param onComplete Closure that will be called when the document has been retrieved consisting of:
+
+  \param success true if no error occurred retrieving document
+
+  \param error nil, or the error that occurred if success is false
+
+  \param document the contents of the retrieved document, or nil if no document with the given Id could be found or an error occurred
+
+*/
++ (void)getDocumentWithId:(NSString * _Nonnull)documentId fromDatabase:(NSString * _Nullable)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable, NSDictionary * _Nullable))onComplete;
+/**
+  Creates a document in the database
+  \param from [String : Any] document properties from which to create the document
+
+  \param withId Optional String Document Id of document to create. If nil, a unique id will be automatically generated.
+
+  \param inDatabase Optional String name of database. If included must match PredixMobilityConfiguration.defaultDatabaseName or be token “~”
+
+  \param onComplete taskReturnDictionaryBlock closure that will be called when the document has been created consisting of:
+
+  \param success true if no error occurred creating the document
+
+  \param error nil, or the error that occurred if success is false
+
+  \param document contents of the created document, otherwise nil if an error occurred
+
+*/
++ (void)createDocumentFrom:(NSDictionary<NSString *, id> * _Nonnull)documentDictionary withId:(NSString * _Nullable)documentId inDatabase:(NSString * _Nullable)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable, NSDictionary * _Nullable))onComplete;
+/**
+  Updates a document in the database
+  \param from [String : Any] document properties to add/update in the document
+
+  \param withId String Document Id of document to update.
+
+  \param inDatabase Optional String name of database. If included must match PredixMobilityConfiguration.defaultDatabaseName or be token “~”
+
+  \param onComplete taskReturnDictionaryBlock closure that will be called when the document has been updated consisting of:
+
+  \param success true if no error occurred updating the document
+
+  \param error nil, or containing the error that occurred if success is false
+
+  \param document contents of the updated document, otherwise nil if an error occurred
+
+*/
++ (void)updateDocumentFrom:(NSDictionary<NSString *, id> * _Nonnull)documentDictionary withId:(NSString * _Nonnull)documentId inDatabase:(NSString * _Nullable)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable, NSDictionary * _Nullable))onComplete;
+/**
+  Deletes a document from the database
+  \param withId String Document Id of document to delete.
+
+  \param fromDatabase Optional String name of database. If included must match PredixMobilityConfiguration.defaultDatabaseName or be token “~”
+
+  \param onComplete taskCompleteBlock closure that will be called when the document has been deleted consisting of:
+
+  \param success true if the document was deleted successfully
+
+  \param error nil, or containing the error that occurred if success is false
+
+*/
++ (void)deleteDocumentWithId:(NSString * _Nonnull)documentId fromDatabase:(NSString * _Nullable)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable))onComplete;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+/**
   Used to create full text search database views.
   <ul>
     <li>
@@ -472,7 +590,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 
   \param dataReturn Second of the three return closures. Used to return data back to the calling code.
   This closure is may be skipped if no data is to be returned.
-  If called, this closeure must be called after the responseReturn closure, and before the requestComplete closure.
+  If called, this closure must be called after the responseReturn closure, and before the requestComplete closure.
 
   \param requestComplete Third and final of the three return closures. This indicates the service request has completed.
   <em>This closure must be called, or the service request will not be complete</em>
@@ -523,7 +641,9 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 /**
   ServiceProtocol performRequest implementation for this service.
   seealso:
-  <a href="../Protocols/ServiceProtocol.html">ServiceProtocol</a>
+  \code
+  ServiceProtocol
+  \endcode
 */
 + (void)performRequest:(NSURLRequest * _Nonnull)request response:(NSHTTPURLResponse * _Nonnull)response responseReturn:(responseReturnBlock _Nonnull)responseReturn dataReturn:(dataReturnBlock _Nonnull)dataReturn requestComplete:(requestCompleteBlock _Nonnull)requestComplete;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -660,7 +780,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class) enum ConfigurationLocation ser
 + (enum ConfigurationLocation)serverEndpointConfigLocation;
 + (void)setServerEndpointConfigLocation:(enum ConfigurationLocation)value;
 /**
-  The server endpoint path used to retreive user session information during the login process.
+  The server endpoint path used to retrieve user session information during the login process.
 */
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull userSessionURLPath;)
 + (NSString * _Nonnull)userSessionURLPath;
@@ -850,6 +970,24 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSDictionary<NSString *,
 + (NSDictionary<NSString *, id> * _Nullable)replicationAdditionalPullSettings;
 + (void)setReplicationAdditionalPullSettings:(NSDictionary<NSString *, id> * _Nullable)value;
 /**
+  The name of a PushReplicationFilter, as setup in pushReplicationFilterDefinitions, to use when replication is initially setup
+*/
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nullable defaultPushReplicationFilterName;)
++ (NSString * _Nullable)defaultPushReplicationFilterName;
++ (void)setDefaultPushReplicationFilterName:(NSString * _Nullable)value;
+/**
+  Dictionary of filter parameters to use when replication is initially setup
+*/
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSDictionary<NSString *, id> * _Nullable defaultPushReplicationFilterParameters;)
++ (NSDictionary<NSString *, id> * _Nullable)defaultPushReplicationFilterParameters;
++ (void)setDefaultPushReplicationFilterParameters:(NSDictionary<NSString *, id> * _Nullable)value;
+/**
+  List of channels used to restrict data coming from the server when replication is initially setup
+*/
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSArray<NSString *> * _Nullable defaultPullReplicationChannels;)
++ (NSArray<NSString *> * _Nullable)defaultPullReplicationChannels;
++ (void)setDefaultPullReplicationChannels:(NSArray<NSString *> * _Nullable)value;
+/**
   Optional keychain access group. If provided this group will be used for all keychain access.
 */
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nullable keychainAccessGroup;)
@@ -876,8 +1014,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL considerUIReadyWhenApplic
 + (void)setConsiderUIReadyWhenApplicationDidBecomeActive:(BOOL)value;
 /**
   This closure allows the implementation of the non-web based serious error pages to be overridden.
-  In iOS the default implemenation shows a UIAlertController with the error details.
-  In the macOS version of the SDK there is no default implmentation.
+  In iOS the default implementation shows a UIAlertController with the error details.
+  In the macOS version of the SDK there is no default implementation.
   important:
   macOS containers must include a web-based serious error page, or should implement this closure.
 */
@@ -906,6 +1044,10 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSURL * _Nulla
   Helper method takes a view name and version, and map function closure, and reduce function closure, creates a ViewDefinition and adds it to the dataViewDefinitions property.
 */
 + (void)appendDataViewDefinition:(NSString * _Nonnull)viewName version:(NSString * _Nonnull)version mapFunction:(void (^ _Nonnull)(NSDictionary<NSString *, id> * _Nonnull, SWIFT_NOESCAPE void (^ _Nonnull)(id _Nonnull, id _Nullable)))mapFunction reduceFunction:(id _Nonnull (^ _Nullable)(NSArray * _Nonnull, NSArray * _Nonnull, BOOL))reduceFunction;
+/**
+  Adds a filter for Push replication, consisting of a filter name, and a closure called to determine if a given document should be sent to the server.
+*/
++ (void)addPushReplicationFilterWithName:(NSString * _Nonnull)name filter:(BOOL (^ _Nonnull)(NSDictionary<NSString *, id> * _Nullable, NSDictionary * _Nullable))filter;
 /**
   Returns a dictionary containing version information of the app, the SDK, and dependent components, as well as some basic environmental information for the current device.
 */
@@ -996,7 +1138,9 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) PredixMobili
 /**
   Public protocol implemented by the Service Router for service registration and processing requests.
   seealso:
-  <a href="../Classes/ServiceRouter.html">ServiceRouter</a>
+  \code
+  ServiceRouter
+  \endcode
 */
 SWIFT_PROTOCOL("_TtP15PredixMobileSDK21ServiceRouterProtocol_")
 @protocol ServiceRouterProtocol

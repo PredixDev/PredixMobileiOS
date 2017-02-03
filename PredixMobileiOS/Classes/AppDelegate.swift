@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var authenticationViewController : UIViewController?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
@@ -33,9 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Pre-load configuration. This will load any Settings bundles into NSUserDefaults and set default logging levels
         PredixMobilityConfiguration.loadConfiguration()
         
-        // Add optional and custom services to the system if required
+        // Add optional and custom services to the system if required by adding these services to an array, and assigning that array to PredixMobilityConfiguration.additionalBootServicesToRegister.
         //PredixMobilityConfiguration.additionalBootServicesToRegister = [OpenURLService.self]
 
+        
         // Example of creating a view for full text search, assuming "body" is a property in some documents that contains a large amount of text.
         /*
         PredixMobilityConfiguration.appendDataViewDefinition("views/searchtext", version: "1") { (properties: [String : Any], emit: (Any, Any?) -> ()) -> () in
@@ -46,6 +46,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         */
+        
+        /* Example of a PushReplicationFilter
+         
+            In this example, only those documents whose "type" property match the provided "allowedType" parameter are pushed to the server.
+         
+            If this filter were enabled and the parameters ["allowedType": "command"] were provided, then only those documents where that contained a "type" of "command" would be sent to the server. All other documents would remain local.
+         
+         */
+        /*
+        PredixMobilityConfiguration.addPushReplicationFilter(name: "filterByType") { (properties: [String : Any]?, parameters:[AnyHashable : Any]?) -> (Bool) in
+            
+            // if the document properties contains a key/value "type" and the parameters contain a key/value "allowedType"
+            if let documentType = properties?["type"] as? String, let allowedType = parameters?["allowedType"] as? String
+            {
+                // only allow the document to be replicated if "type" and "allowedType" are equal
+                return documentType == allowedType
+            }
+            
+            // prevent any documents without a "type", or if the parameter doesn't define an "allowedType", from replicating to the server
+            return false
+        }
+        */
+        
+        /*
+         Example of setting a default filter parameters
+         These default filter parameters would work with the above addPushReplicationFilter filter closure example to exclude all documents from being sent to the server,
+          except for those containing a "type" property with a value of "command"
+        */
+        //PredixMobilityConfiguration.defaultPushReplicationFilterName = "filterByType"
+        //PredixMobilityConfiguration.defaultPushReplicationFilterParameters = ["allowedType": "command"]
+
+        
+        //Example of capturing ServiceRouter metrics. See logServiceInvokedNotifications function below.
+        //self.logServiceInvokedNotifications()
         
         // create the PredixMobilityManager object. This object coordinates the application state, interacts with the various services, and holds closures called during authentication.
         
@@ -149,6 +183,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    /*
+     Example of capturing ServiceRouter metrics. The ServiceInvokedNotification notification contains metrics of all requests passing to all services.
+     In this simple example we're just logging the metrics, but these could also be written to a file, stored and later written to a database document, or given some other treatment
+     */
+    /*
+    var serviceInvokedObserver : NSObjectProtocol?
+    func logServiceInvokedNotifications()
+    {
+        self.serviceInvokedObserver = NotificationCenter.default.addObserver(forName: ServiceInvokedNotification, object: nil, queue: nil, using: { (note: Notification) in
+            
+            // don't bother processing if trace logging isn't currently enabled
+            guard Logger.isTraceEnabled() else {return}
+            
+            if let serviceDetails = note.object as? [String: Any]
+            {
+                let path = serviceDetails["path"] as? String ?? ""
+                let method = serviceDetails["method"] as? String ?? ""
+                let bytesSent = serviceDetails["bytesSent"] as? Int ?? 0
+                let bytesReceived = serviceDetails["bytesReceived"] as? Int ?? 0
+                Logger.trace("Service Metrics: path: \(path) | method: \(method) | bytesReceived: \(bytesReceived) | bytesSent: \(bytesSent)")
+            }
+        })
+    }
+    */
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
