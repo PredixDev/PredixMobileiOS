@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,25 +23,48 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" highlightedImage="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="nMx-ZA-gfe">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Launching Example Predix Mobile Container..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FKP-hB-FY5">
-                                <rect key="frame" x="16" y="164" width="343" height="119"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="119" id="jrD-7q-cAL"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CI0-3m-cgl">
+                                <rect key="frame" x="0.0" y="155" width="375" height="357"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Launching Example Predix Mobile Container..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FKP-hB-FY5">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="119" id="jrD-7q-cAL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLACEHOLDER" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEb-Hj-Hjg">
+                                        <rect key="frame" x="0.0" y="119" width="375" height="119"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="119" id="3mL-Dn-Tw6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Replace splashscreen, icons, error messages and handling with elements that make sense for your app." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiQ-gd-kqJ">
+                                        <rect key="frame" x="0.0" y="238" width="375" height="119"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="119" id="izt-Pq-0KZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="nMx-ZA-gfe" secondAttribute="trailing" id="2hP-6D-R1q"/>
-                            <constraint firstItem="FKP-hB-FY5" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="JeP-5q-6lQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="FKP-hB-FY5" secondAttribute="trailing" id="UZO-V2-TzL"/>
+                            <constraint firstItem="CI0-3m-cgl" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="D3r-nB-oGQ"/>
+                            <constraint firstAttribute="trailing" secondItem="CI0-3m-cgl" secondAttribute="trailing" id="FRI-zT-dSO"/>
+                            <constraint firstItem="CI0-3m-cgl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="NJH-U1-5h7"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="nMx-ZA-gfe" secondAttribute="bottom" id="UwY-Ev-LgB"/>
-                            <constraint firstItem="FKP-hB-FY5" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XYS-mw-Cln"/>
                             <constraint firstItem="nMx-ZA-gfe" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="YD7-hA-Glc"/>
-                            <constraint firstItem="FKP-hB-FY5" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="144" id="nPK-tz-w54"/>
+                            <constraint firstItem="CI0-3m-cgl" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="dje-7v-zPa"/>
                             <constraint firstItem="nMx-ZA-gfe" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="slX-Qm-gh8"/>
                         </constraints>
                     </view>

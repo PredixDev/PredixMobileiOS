@@ -34,7 +34,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Add optional and custom services to the system if required by adding these services to an array, and assigning that array to PredixMobilityConfiguration.additionalBootServicesToRegister.
         //PredixMobilityConfiguration.additionalBootServicesToRegister = [OpenURLService.self]
-
+        //
+        // Note: additionalBootServicesToRegister is an array, so the above assigns array with a single element to additionalBootServicesToRegister.
+        // You could assign multiple services to the array by creating the array with multiple values:
+        //
+        //PredixMobilityConfiguration.additionalBootServicesToRegister = [OpenURLService.self, MyCustomService.self, MyOtherService.self]
+        //
+        // Or by appending to the array:
+        //
+        //PredixMobilityConfiguration.additionalBootServicesToRegister = [OpenURLService.self]
+        //PredixMobilityConfiguration.additionalBootServicesToRegister?.append(MyCustomService.self)
+        //PredixMobilityConfiguration.additionalBootServicesToRegister?.append(MyOtherService.self)
+        
+        
+        // Example of creating a view indexed on a field called "part_number", and issuing a value called "part_description"
+        /*
+         PredixMobilityConfiguration.appendDataViewDefinition("views/parts", version: "1") { (properties: [String : Any], emit: (Any, Any?) -> ()) -> () in
+         
+            if let partNumber = properties["part_number"] as? String, let partDesc = properties["part_description"] as? String
+            {
+                emit(partNumber, partDesc)
+            }
+         }
+         */
         
         // Example of creating a view for full text search, assuming "body" is a property in some documents that contains a large amount of text.
         /*

@@ -970,6 +970,20 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSDictionary<NSString *,
 + (NSDictionary<NSString *, id> * _Nullable)replicationAdditionalPullSettings;
 + (void)setReplicationAdditionalPullSettings:(NSDictionary<NSString *, id> * _Nullable)value;
 /**
+  While Online and Authenticated, if replication is encountering continuous errors, after this number of consecutive errors replication will be paused for a period of time as specified by PredixMobilityConfiguration.replicationFailureRetryRecoveryTime.
+  Changes to connectivity state will reset the error count.
+*/
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class) NSInteger replicationFailureMaxRetryAttempts;)
++ (NSInteger)replicationFailureMaxRetryAttempts;
++ (void)setReplicationFailureMaxRetryAttempts:(NSInteger)value;
+/**
+  After PredixMobilityConfiguration.replicationFailureRetryAttempts have been surpased, replication will pause for this time interval before resuming.
+  Changes to connectivity state will invalidate the timer.
+*/
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class) NSTimeInterval replicationFailureRetryRecoveryTime;)
++ (NSTimeInterval)replicationFailureRetryRecoveryTime;
++ (void)setReplicationFailureRetryRecoveryTime:(NSTimeInterval)value;
+/**
   The name of a PushReplicationFilter, as setup in pushReplicationFilterDefinitions, to use when replication is initially setup
 */
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nullable defaultPushReplicationFilterName;)
@@ -1163,6 +1177,7 @@ SWIFT_PROTOCOL("_TtP15PredixMobileSDK21ServiceRouterProtocol_")
 - (void)unregisterService:(Class <ServiceProtocol> _Nonnull)service;
 /**
   Processes the provided request, routing the request to the appropriate service.
+  All processRequest methods should be considered asynchronous. Return closures may not be called on the same dispatch queue as the original request.
   The request URL will be similar to: \code
   http://pmapi/serviceid/extrapath
   \endcode
@@ -1179,6 +1194,7 @@ SWIFT_PROTOCOL("_TtP15PredixMobileSDK21ServiceRouterProtocol_")
 - (void)processRequest:(NSURLRequest * _Nonnull)request responseBlock:(responseReturnBlock _Nonnull)responseBlock dataBlock:(dataReturnBlock _Nonnull)dataBlock completionBlock:(requestCompleteBlock _Nonnull)completionBlock;
 /**
   Constructs a basic GET request for given service identifier and processes the provided request, routing the request to the appropriate service.
+  All processRequest methods should be considered asynchronous. Return closures may not be called on the same dispatch queue as the original request.
   The request URL will be similar to: \code
   http://pmapi/serviceid
   \endcode
@@ -1195,6 +1211,7 @@ SWIFT_PROTOCOL("_TtP15PredixMobileSDK21ServiceRouterProtocol_")
 - (void)processRequestWithServiceId:(NSString * _Nonnull)serviceId responseBlock:(responseReturnBlock _Nonnull)responseBlock dataBlock:(dataReturnBlock _Nonnull)dataBlock completionBlock:(requestCompleteBlock _Nonnull)completionBlock;
 /**
   Constructs a GET request for given service identifier and processes the provided request, routing the request to the appropriate service.
+  All processRequest methods should be considered asynchronous. Return closures may not be called on the same dispatch queue as the original request.
   The request URL will be similar to: \code
   http://pmapi/serviceid/extrapath
   \endcode
@@ -1234,6 +1251,7 @@ SWIFT_PROTOCOL("_TtP15PredixMobileSDK21ServiceRouterProtocol_")
 - (void)processRequest:(NSString * _Nonnull)serviceId extraPath:(NSString * _Nullable)extraPath responseBlock:(responseReturnBlock _Nonnull)responseBlock dataBlock:(dataReturnBlock _Nonnull)dataBlock completionBlock:(requestCompleteBlock _Nonnull)completionBlock;
 /**
   Constructs a request for given service identifier and processes the provided request, routing the request to the appropriate service.
+  All processRequest methods should be considered asynchronous. Return closures may not be called on the same dispatch queue as the original request.
   The request URL will be similar to: \code
   http://pmapi/serviceid/extrapath
   \endcode
@@ -1328,6 +1346,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) id <ServiceR
 - (void)unregisterServiceByIdentifier:(NSString * _Nonnull)serviceId;
 /**
   Constructs a basic GET request for given service identifier and processes the provided request, routing the request to the appropriate service.
+  All processRequest methods should be considered asynchronous. Return closures may not be called on the same dispatch queue as the original request.
   The request URL will be similar to: \code
   http://pmapi/serviceid
   \endcode
@@ -1344,6 +1363,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) id <ServiceR
 - (void)processRequestWithServiceId:(NSString * _Nonnull)serviceId responseBlock:(responseReturnBlock _Nonnull)responseBlock dataBlock:(dataReturnBlock _Nonnull)dataBlock completionBlock:(requestCompleteBlock _Nonnull)completionBlock;
 /**
   Constructs a GET request for given service identifier and processes the provided request, routing the request to the appropriate service.
+  All processRequest methods should be considered asynchronous. Return closures may not be called on the same dispatch queue as the original request.
   The request URL will be similar to: \code
   http://pmapi/serviceid/extrapath
   \endcode
@@ -1383,6 +1403,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) id <ServiceR
 - (void)processRequest:(NSString * _Nonnull)serviceId extraPath:(NSString * _Nullable)extraPath responseBlock:(responseReturnBlock _Nonnull)responseBlock dataBlock:(dataReturnBlock _Nonnull)dataBlock completionBlock:(requestCompleteBlock _Nonnull)completionBlock;
 /**
   Constructs a request for given service identifier and processes the provided request, routing the request to the appropriate service.
+  All processRequest methods should be considered asynchronous. Return closures may not be called on the same dispatch queue as the original request.
   The request URL will be similar to: \code
   http://pmapi/serviceid/extrapath
   \endcode
@@ -1426,6 +1447,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) id <ServiceR
 - (void)processRequest:(NSString * _Nonnull)serviceId extraPath:(NSString * _Nullable)extraPath method:(NSString * _Nonnull)method data:(NSData * _Nullable)data responseBlock:(responseReturnBlock _Nonnull)responseBlock dataBlock:(dataReturnBlock _Nonnull)dataBlock completionBlock:(requestCompleteBlock _Nonnull)completionBlock;
 /**
   Processes the provided request, routing the request to the appropriate service.
+  All processRequest methods should be considered asynchronous. Return closures may not be called on the same dispatch queue as the original request.
   The request URL will be similar to: \code
   http://pmapi/serviceid/extrapath
   \endcode
