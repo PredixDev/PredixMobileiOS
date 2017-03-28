@@ -127,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
 
         // logging our current running environment
-        Logger.debug("Started app with launchOptions: \(launchOptions)")
+        Logger.debug("Started app with launchOptions: \(String(describing: launchOptions))")
         
         if Logger.isInfoEnabled() {
             let versionInfo = PredixMobilityConfiguration.getVersionInfo()
@@ -158,7 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let launchOptions = launchOptions, let notification = launchOptions[UIApplicationLaunchOptionsKey.localNotification] as? UILocalNotification
         {
             Logger.debug("Startup with local notification")
-            Logger.trace("Startup local notification info: \(notification.userInfo)")
+            Logger.trace("Startup local notification info: \(String(describing: notification.userInfo))")
             PredixMobilityManager.sharedInstance.applicationDelegates.application(application, didReceiveLocalNotification: notification)
         }
         
