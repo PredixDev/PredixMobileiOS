@@ -186,6 +186,33 @@ SWIFT_CLASS("_TtC15PredixMobileSDK15DatabaseManager")
 /// \param error nil, or containing the error that occurred if success is false
 ///
 + (void)removeAllPullReplicationChannelsOnComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable))onComplete;
+/// Stops notifications for a query established with a <code>monitorWithNotification</code> parameter
+/// See Also:
+/// <ul>
+///   <li>
+///     <code>QueryParameters.monitorWithNotification</code>
+///   </li>
+/// </ul>
+/// \param notification Notification.Name of the notifications sent when the query results are updated
+///
++ (void)stopQueryObserverFor:(NSNotificationName _Nonnull)notification;
+/// Stops notifications for all current queries established with a <code>monitorWithNotification</code> parameter
+/// See Also:
+/// <ul>
+///   <li>
+///     <code>QueryParameters.monitorWithNotification</code>
+///   </li>
+/// </ul>
++ (void)stopAllQueryObservers;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+@interface DatabaseManager (SWIFT_EXTENSION(PredixMobileSDK))
+@end
+
+
+@interface DatabaseManager (SWIFT_EXTENSION(PredixMobileSDK))
 /// Returns a document from the database.
 /// Note, that if a document with the provided document id does not exist, the success return value in the onComplete closure will still be true, but the returned document dictionary will be nil.
 /// \param withId Document Id of document to retrieve
@@ -200,7 +227,21 @@ SWIFT_CLASS("_TtC15PredixMobileSDK15DatabaseManager")
 ///
 /// \param document the contents of the retrieved document, or nil if no document with the given Id could be found or an error occurred
 ///
-+ (void)getDocumentWithId:(NSString * _Nonnull)documentId fromDatabase:(NSString * _Nullable)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable, NSDictionary * _Nullable))onComplete;
++ (void)getDocumentWithId:(NSString * _Nonnull)documentId fromDatabase:(NSString * _Nonnull)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable, NSDictionary * _Nullable))onComplete;
+/// Returns multiple documents from the database.
+/// \param withIds Array of document Ids to retrieve
+///
+/// \param fromDatabase name of database.
+///
+/// \param onComplete Closure that will be called when the document has been retrieved consisting of:
+///
+/// \param success true if no error occurred retrieving document
+///
+/// \param error nil, or the error that occurred if success is false
+///
+/// \param documents Array of the contents of the retrieved documents, or empty if no documents with the given Ids could be found or nil if an error occurred
+///
++ (void)getDocumentsWithIds:(NSArray<NSString *> * _Nonnull)documentIds fromDatabase:(NSString * _Nonnull)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable, NSArray<NSDictionary *> * _Nullable))onComplete;
 /// Creates a document in the database
 /// \param from [String : Any] document properties from which to create the document
 ///
@@ -216,7 +257,7 @@ SWIFT_CLASS("_TtC15PredixMobileSDK15DatabaseManager")
 ///
 /// \param document contents of the created document, otherwise nil if an error occurred
 ///
-+ (void)createDocumentFrom:(NSDictionary<NSString *, id> * _Nonnull)documentDictionary withId:(NSString * _Nullable)documentId inDatabase:(NSString * _Nullable)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable, NSDictionary * _Nullable))onComplete;
++ (void)createDocumentFrom:(NSDictionary<NSString *, id> * _Nonnull)documentDictionary withId:(NSString * _Nullable)documentId inDatabase:(NSString * _Nonnull)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable, NSDictionary * _Nullable))onComplete;
 /// Updates a document in the database
 /// \param from [String : Any] document properties to add/update in the document
 ///
@@ -232,7 +273,7 @@ SWIFT_CLASS("_TtC15PredixMobileSDK15DatabaseManager")
 ///
 /// \param document contents of the updated document, otherwise nil if an error occurred
 ///
-+ (void)updateDocumentFrom:(NSDictionary<NSString *, id> * _Nonnull)documentDictionary withId:(NSString * _Nonnull)documentId inDatabase:(NSString * _Nullable)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable, NSDictionary * _Nullable))onComplete;
++ (void)updateDocumentFrom:(NSDictionary<NSString *, id> * _Nonnull)documentDictionary withId:(NSString * _Nonnull)documentId inDatabase:(NSString * _Nonnull)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable, NSDictionary * _Nullable))onComplete;
 /// Deletes a document from the database
 /// \param withId String Document Id of document to delete.
 ///
@@ -244,8 +285,22 @@ SWIFT_CLASS("_TtC15PredixMobileSDK15DatabaseManager")
 ///
 /// \param error nil, or containing the error that occurred if success is false
 ///
-+ (void)deleteDocumentWithId:(NSString * _Nonnull)documentId fromDatabase:(NSString * _Nullable)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable))onComplete;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (void)deleteDocumentWithId:(NSString * _Nonnull)documentId fromDatabase:(NSString * _Nonnull)database onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable))onComplete;
+@end
+
+
+@interface DatabaseManager (SWIFT_EXTENSION(PredixMobileSDK))
+/// Deletes a command for the given ID
+/// WARNING:  Deleting a command from the client does not guarantee it won’t be processed by the server.  If a command
+/// was created and syncronized to the server before the command was deleted from the client then the command will be processed by the server.
+/// If you need to cancel a command on the server you should build logic into your commands to allow them to be cancelled on the server side.
+/// \param id The command id of the command you want to delete
+///
+/// \param completionHandler closure that will be called when the command has been deleted consisting of
+///
+/// \param error nil, or an <code>Error</code> containing details of the error that occured.
+///
++ (void)deleteCommandWithId:(NSString * _Nonnull)commandId completionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler;
 @end
 
 
@@ -598,6 +653,10 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull logo
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull dataReplicationURLPath;)
 + (NSString * _Nonnull)dataReplicationURLPath SWIFT_WARN_UNUSED_RESULT;
 + (void)setDataReplicationURLPath:(NSString * _Nonnull)value;
+/// The server endpoinr path used to upload monitor logs and alerts
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull clientMonitorURLPath;)
++ (NSString * _Nonnull)clientMonitorURLPath SWIFT_WARN_UNUSED_RESULT;
++ (void)setClientMonitorURLPath:(NSString * _Nonnull)value;
 /// The server endpoint path used to validate the user has a valid authenticated session.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull authorizationCheckURLPath;)
 + (NSString * _Nonnull)authorizationCheckURLPath SWIFT_WARN_UNUSED_RESULT;
@@ -804,6 +863,33 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull hybr
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class) enum ConfigurationLocation hybridUIAllowUpdatesConfigLocation;)
 + (enum ConfigurationLocation)hybridUIAllowUpdatesConfigLocation SWIFT_WARN_UNUSED_RESULT;
 + (void)setHybridUIAllowUpdatesConfigLocation:(enum ConfigurationLocation)value;
+/// When enabled the client will monitor and trace conditions in database and on other features in the SDK.  These monitor logs will be reported to the backend client monitor. Alert conditions detected by the client
+/// will be reported to the Predix NOC as an alert.  Clients can also choose to send logs for their applications.  Please visit the Mobile MonitorMonitor class for more inforamtion.
+/// <em>Default</em>: false
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL clientMonitoringEnabled;)
++ (BOOL)clientMonitoringEnabled SWIFT_WARN_UNUSED_RESULT;
++ (void)setClientMonitoringEnabled:(BOOL)value;
+/// By default monitor logs are only sent when a user logs in for the first time when enabled.  Setting this flag to true will send monitor logs when the monitor is quite for a period of time.
+/// <em>Default</em>: false
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL clientMonitorSendsLogsContinuously;)
++ (BOOL)clientMonitorSendsLogsContinuously SWIFT_WARN_UNUSED_RESULT;
++ (void)setClientMonitorSendsLogsContinuously:(BOOL)value;
+/// The time in seconds the monitor should wait to see if more monitor data comes in before sending the monitor logs to the server
+/// NOTE:  This configuration is only valid if clientMonitoringEnabled and clientMonitorSendsLogsContinuously is enabled
+/// <em>Default</em>: 10 seconds
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class) NSTimeInterval clientMonitorLogBatchWriteToDiskDelay;)
++ (NSTimeInterval)clientMonitorLogBatchWriteToDiskDelay SWIFT_WARN_UNUSED_RESULT;
++ (void)setClientMonitorLogBatchWriteToDiskDelay:(NSTimeInterval)value;
+/// TODO temporary var, remove me please!!!!!!
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nullable clientMonitorHostAndEnpointOverride;)
++ (NSString * _Nullable)clientMonitorHostAndEnpointOverride SWIFT_WARN_UNUSED_RESULT;
++ (void)setClientMonitorHostAndEnpointOverride:(NSString * _Nullable)value;
+/// The time in seconds the monitor should wait to see if more alerts happen before sending the alert to the server
+/// NOTE:  This configuration is only valid if clientMonitoringEnabled is enabled
+/// <em>Default</em>: 30 seconds
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class) NSTimeInterval clientMonitorTransmitDelay;)
++ (NSTimeInterval)clientMonitorTransmitDelay SWIFT_WARN_UNUSED_RESULT;
++ (void)setClientMonitorTransmitDelay:(NSTimeInterval)value;
 /// Tells the SDK to initialize, load configuration from settings, prepare the logging system, and prepare the SDK for startup. If not called by the time PredixMobilityManager.startApp is called, it will be called at that time.
 + (void)loadConfiguration;
 /// Helper method takes a view name and version, and map function closure, creates a ViewDefinition and adds it to the dataViewDefinitions property.
@@ -847,7 +933,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) PredixMobili
 /// Starts the Predix Mobile SDK application, loading configuration and calling the boot service when the UI is ready.
 - (void)startApp;
 /// Starts the boot service, with appropriate handling using the Serious Error Page for boot service errors.
-- (void)callBootService;
+- (void)callBootServiceWithPath:(NSString * _Nonnull)withPath;
 /// Helper to show the Serious Error Page with the provided message string.
 /// \param msg String message to show in the error UI.
 ///
