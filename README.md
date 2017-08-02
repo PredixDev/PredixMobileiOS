@@ -5,16 +5,16 @@ This project is the sample reference application for the Predix Mobile Container
 ## Getting Started
 It is assumed you already have a Predix Mobile cloud services installation, have installed the Predix Mobile command line tool, and have completed the steps in the following topics to publish your initial Predix Mobile webapp, define your Predix Mobile app, and import the sample data:
 
-* [Get Started with the Mobile Service and Mobile SDK] (https://www.predix.io/docs#rae4EfJ6) 
-* [Running the Predix Mobile Sample App] (https://www.predix.io/docs#EGUzWwcC)
-* [Creating a Mobile Hello World Web App] (https://www.predix.io/docs#DrBWuHkl) 
+* [Get Started with the Mobile Service and Mobile SDK](https://www.predix.io/docs#rae4EfJ6) 
+* [Running the Predix Mobile Sample App](https://www.predix.io/docs#EGUzWwcC)
+* [Creating a Mobile Hello World Web App](https://www.predix.io/docs#DrBWuHkl) 
 
 It is also assumed you're running on a Mac, with XCode version 8.2 installed.
 
 ## Download the Container and Start the App
 
-* [Downloading the iOS Predix Mobile App Container] (https://www.predix.io/docs#F30gVeYB)
-* [Starting your iOS Sample App] (https://www.predix.io/docs/?r=205683#cKwF3PlW)
+* [Downloading the iOS Predix Mobile App Container](https://www.predix.io/docs#F30gVeYB)
+* [Starting your iOS Sample App](https://www.predix.io/docs/?r=205683#cKwF3PlW)
 
 
 ## TroubleShooting:
