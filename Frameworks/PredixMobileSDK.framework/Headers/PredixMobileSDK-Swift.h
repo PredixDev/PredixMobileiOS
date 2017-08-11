@@ -152,6 +152,20 @@ typedef SWIFT_ENUM(NSInteger, ConfigurationLocation) {
 /// Database interaction class. Controls setup of replication, access to documents, manipulation of attachments, etc.
 SWIFT_CLASS("_TtC15PredixMobileSDK15DatabaseManager")
 @interface DatabaseManager : NSObject
+/// Sets up initial database replication.
+/// \param forDatabase Name of database to start replicating. Currently must match database name in PredixMobilityConfiguration.defaultDatabaseName or the token “~”
+///
+/// \param withUrl URL of replication gateway
+///
+/// \param onComplete Closure, indicating success or failure of setting up replication, consisting of:
+///
+/// \param success true does NOT mean replication has completed successfully, or that the URL provided was valid or reachable, just that there were no internal errors in initializing the replication process.
+///
+/// \param error nil, or containing the error that occurred if success is false
+///
+/// \param firstSyncComplete Optional closure that, if provided, will be called when the initial replication process has completed successfully.
+///
++ (void)setupReplicationForDatabase:(NSString * _Nonnull)database withUrl:(NSURL * _Nonnull)url continuous:(BOOL)continuous pullOnly:(BOOL)pullOnly onComplete:(void (^ _Nonnull)(BOOL, NSError * _Nullable))onComplete firstSyncComplete:(void (^ _Nullable)(void))syncComplete;
 /// Associates given filter name and filter parameters with push (client to server) replication
 /// seealso:
 /// <code>PredixMobilityConfiguration.pushReplicationFilterDefinitions</code>
@@ -293,7 +307,7 @@ SWIFT_CLASS("_TtC15PredixMobileSDK15DatabaseManager")
 /// Deletes a command for the given ID
 /// WARNING:  Deleting a command from the client does not guarantee it won’t be processed by the server.  If a command
 /// was created and syncronized to the server before the command was deleted from the client then the command will be processed by the server.
-/// If you need to cancel a command on the server you should build logic into your commands to allow them to be cancelled on the server side.
+/// If you need to cancel a command on the server you should build logic into your commands to allow them to be canceled on the server side.
 /// \param id The command id of the command you want to delete
 ///
 /// \param completionHandler closure that will be called when the command has been deleted consisting of
@@ -600,6 +614,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class) enum LoggerLevel defaultLoggin
 + (enum LoggerLevel)defaultLoggingLevel SWIFT_WARN_UNUSED_RESULT;
 + (void)setDefaultLoggingLevel:(enum LoggerLevel)value;
 /// Specifies the default database name to use. This value is overridden by the user’s information upon login, if a database name key is found within the user’s information.
+/// <em>Default:</em> <code>pm</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull defaultDatabaseName;)
 + (NSString * _Nonnull)defaultDatabaseName SWIFT_WARN_UNUSED_RESULT;
 + (void)setDefaultDatabaseName:(NSString * _Nonnull)value;
@@ -614,6 +629,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull auth
 + (NSString * _Nonnull)authenticationGrantIndicator SWIFT_WARN_UNUSED_RESULT;
 + (void)setAuthenticationGrantIndicator:(NSString * _Nonnull)value;
 /// Specifies the configuration key (as in a key/value pair) used to determine the logging level in either the info.plist or the settings bundle root.plist
+/// <em>Default:</em> <code>logging_level</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull loggingLevelConfigKey;)
 + (NSString * _Nonnull)loggingLevelConfigKey SWIFT_WARN_UNUSED_RESULT;
 + (void)setLoggingLevelConfigKey:(NSString * _Nonnull)value;
@@ -622,6 +638,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class) enum ConfigurationLocation log
 + (enum ConfigurationLocation)loggingLevelConfigLocation SWIFT_WARN_UNUSED_RESULT;
 + (void)setLoggingLevelConfigLocation:(enum ConfigurationLocation)value;
 /// Specifies the configuration key (as in a key/value pair) used to determine the “Trace logging level logs all requests” value is in either the info.plist or the settings bundle root.plist
+/// <em>Default:</em> <code>traceLogsReqeuests</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull traceLogsRequestsConfigKey;)
 + (NSString * _Nonnull)traceLogsRequestsConfigKey SWIFT_WARN_UNUSED_RESULT;
 + (void)setTraceLogsRequestsConfigKey:(NSString * _Nonnull)value;
@@ -629,7 +646,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull trac
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class) enum ConfigurationLocation traceLogsRequestsConfigLocation;)
 + (enum ConfigurationLocation)traceLogsRequestsConfigLocation SWIFT_WARN_UNUSED_RESULT;
 + (void)setTraceLogsRequestsConfigLocation:(enum ConfigurationLocation)value;
-/// Specifies the configuration key (as in a key/value pair) used to determine the server endpoint hostname in either the info.plist or the settings bundle root.plist
+/// Specifies the configuration key (as in a key/value pair) used to determine the server endpoint hostname in either the info.plist or the settings bundle root.plist.
+/// <em>Default:</em> <code>server_url</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull serverEndpointConfigKey;)
 + (NSString * _Nonnull)serverEndpointConfigKey SWIFT_WARN_UNUSED_RESULT;
 + (void)setServerEndpointConfigKey:(NSString * _Nonnull)value;
@@ -637,6 +655,9 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull serv
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class) enum ConfigurationLocation serverEndpointConfigLocation;)
 + (enum ConfigurationLocation)serverEndpointConfigLocation SWIFT_WARN_UNUSED_RESULT;
 + (void)setServerEndpointConfigLocation:(enum ConfigurationLocation)value;
+/// Base server endpoint URL, or nil if <code>LoadConfiguration</code> has not yet been called.
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSURL * _Nullable serverEndpointURL;)
++ (NSURL * _Nullable)serverEndpointURL SWIFT_WARN_UNUSED_RESULT;
 /// The server endpoint path used to retrieve user session information during the login process.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull userSessionURLPath;)
 + (NSString * _Nonnull)userSessionURLPath SWIFT_WARN_UNUSED_RESULT;
@@ -662,20 +683,19 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull auth
 + (NSString * _Nonnull)authorizationCheckURLPath SWIFT_WARN_UNUSED_RESULT;
 + (void)setAuthorizationCheckURLPath:(NSString * _Nonnull)value;
 /// The key in the response JSON from the userSessionURLPath call that specifies the user name value. The value this key is associated with is expected to be a string.
+/// <em>Default:</em> <code>name</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull userSessionUsernameKey;)
 + (NSString * _Nonnull)userSessionUsernameKey SWIFT_WARN_UNUSED_RESULT;
 + (void)setUserSessionUsernameKey:(NSString * _Nonnull)value;
-/// The key in the response JSON from the userSessionURLPath call that specifies the authentication status value. The value this key is associated with is expected to be a boolean.
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull userSessionAuthenticatedKey;)
-+ (NSString * _Nonnull)userSessionAuthenticatedKey SWIFT_WARN_UNUSED_RESULT;
-+ (void)setUserSessionAuthenticatedKey:(NSString * _Nonnull)value;
 /// The key in the response JSON from the userSessionURLPath call that specifies the database name value. The value this key is associated with is expected to be a string.
 /// If this property is nil, or not found in the user session information then defaultDatabaseName value is used for the database name.
+/// <em>Default:</em><code>db</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nullable userSessionDatabaseNameKey;)
 + (NSString * _Nullable)userSessionDatabaseNameKey SWIFT_WARN_UNUSED_RESULT;
 + (void)setUserSessionDatabaseNameKey:(NSString * _Nullable)value;
 /// Specifies the configuration key used to determine the PM app name to load in either the info.plist or the settings bundle root.plist
 /// This value is the “name” field in the app.json document loaded into the database with the PM cli “define” command.
+/// <em>Default:</em> <code>pmapp_name</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull pmappDocumentNameKey;)
 + (NSString * _Nonnull)pmappDocumentNameKey SWIFT_WARN_UNUSED_RESULT;
 + (void)setPmappDocumentNameKey:(NSString * _Nonnull)value;
@@ -685,26 +705,32 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class) enum ConfigurationLocation pma
 + (void)setPmappDocumentNameConfigLocation:(enum ConfigurationLocation)value;
 /// Specifies the configuration key used to determine the PM app version to load in either the info.plist or the settings bundle root.plist
 /// This value is the “version” field in the app.json document loaded into the database with the PM cli “define” command.
+/// <em>Default:</em> <code>pmapp_version</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull pmappDocumentVersionKey;)
 + (NSString * _Nonnull)pmappDocumentVersionKey SWIFT_WARN_UNUSED_RESULT;
 + (void)setPmappDocumentVersionKey:(NSString * _Nonnull)value;
 /// Specifies where the PM app version configuration key/value should be found.
+/// <em>Default:</em> <code>ConfigurationLocation.infoplist</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class) enum ConfigurationLocation pmappDocumentVersionConfigLocation;)
 + (enum ConfigurationLocation)pmappDocumentVersionConfigLocation SWIFT_WARN_UNUSED_RESULT;
 + (void)setPmappDocumentVersionConfigLocation:(enum ConfigurationLocation)value;
 /// The key in the PM app document that determines the initial webapp to load into the container at startup.
+/// <em>Default:</em> <code>starter</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull pmAppDocumentWebAppNameKey;)
 + (NSString * _Nonnull)pmAppDocumentWebAppNameKey SWIFT_WARN_UNUSED_RESULT;
 + (void)setPmAppDocumentWebAppNameKey:(NSString * _Nonnull)value;
 /// The key in the PM app document that determines the offline authentication webapp to use during offline login.
+/// <em>Default:</em> <code>offline</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull pmAppDocumentOfflineAppNameKey;)
 + (NSString * _Nonnull)pmAppDocumentOfflineAppNameKey SWIFT_WARN_UNUSED_RESULT;
 + (void)setPmAppDocumentOfflineAppNameKey:(NSString * _Nonnull)value;
 /// The key in the PM app document that determines the available webapps array.
+/// <em>Default:</em> <code>dependencies</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull pmAppDocumentDependenciesKey;)
 + (NSString * _Nonnull)pmAppDocumentDependenciesKey SWIFT_WARN_UNUSED_RESULT;
 + (void)setPmAppDocumentDependenciesKey:(NSString * _Nonnull)value;
 /// The hostname to be used for Predix Mobile SDK service calls.
+/// <em>Default:</em> <code>pmapi</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull apiHostname;)
 + (NSString * _Nonnull)apiHostname SWIFT_WARN_UNUSED_RESULT;
 + (void)setApiHostname:(NSString * _Nonnull)value;
@@ -714,6 +740,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull seri
 + (void)setSeriousErrorDefaultMessage:(NSString * _Nonnull)value;
 /// The Bundled HTML filename used for the catastrophic error display that is shown to the user when no webapp can be loaded or the application cannot otherwise continue.
 /// If this file is not found a native UI alert message will be used.
+/// <em>Default:</em> <code>SeriousError.html</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull seriousErrorPage;)
 + (NSString * _Nonnull)seriousErrorPage SWIFT_WARN_UNUSED_RESULT;
 + (void)setSeriousErrorPage:(NSString * _Nonnull)value;
@@ -730,14 +757,17 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL shouldLogUnhandledErrors;
 + (BOOL)shouldLogUnhandledErrors SWIFT_WARN_UNUSED_RESULT;
 + (void)setShouldLogUnhandledErrors:(BOOL)value;
 /// Specifies the SDK will automatically import default values from the Settings bundle into standard UserDefaults
+/// <em>Default:</em> <code>true</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL shouldInitializeDefaultsFromSettings;)
 + (BOOL)shouldInitializeDefaultsFromSettings SWIFT_WARN_UNUSED_RESULT;
 + (void)setShouldInitializeDefaultsFromSettings:(BOOL)value;
 /// Specifies the SDK will attempt to detect URL requests for placeholder images from <a href="http://placehold.it">http://placehold.it</a> and issue a warning log entry when detected
+/// <em>Default:</em> <code>true</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL shouldIssueWarningsForPlaceholderURLs;)
 + (BOOL)shouldIssueWarningsForPlaceholderURLs SWIFT_WARN_UNUSED_RESULT;
 + (void)setShouldIssueWarningsForPlaceholderURLs:(BOOL)value;
 /// Specifies the SDK will require the device to have a passcode set to proceed during the Boot service startup process.
+/// <em>Default:</em> <code>true</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL requireDevicePasscodeSet;)
 + (BOOL)requireDevicePasscodeSet SWIFT_WARN_UNUSED_RESULT;
 + (void)setRequireDevicePasscodeSet:(BOOL)value;
@@ -746,6 +776,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull defa
 + (NSString * _Nonnull)defaultInitializationDetectionKey SWIFT_WARN_UNUSED_RESULT;
 + (void)setDefaultInitializationDetectionKey:(NSString * _Nonnull)value;
 /// Specifies the default to indicate a watcher will log all networks requests for the app.
+/// <em>Default:</em> <code>false</code>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL traceLogsAllRequestsDefault;)
 + (BOOL)traceLogsAllRequestsDefault SWIFT_WARN_UNUSED_RESULT;
 + (void)setTraceLogsAllRequestsDefault:(BOOL)value;
@@ -884,6 +915,10 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class) NSTimeInterval clientMonitorLo
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nullable clientMonitorHostAndEnpointOverride;)
 + (NSString * _Nullable)clientMonitorHostAndEnpointOverride SWIFT_WARN_UNUSED_RESULT;
 + (void)setClientMonitorHostAndEnpointOverride:(NSString * _Nullable)value;
+/// If the default <code>AuthenticationManager</code> setup is used, this flag allows the Offline webapp to use TouchId for authentication, in place of the offline password.
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL offlineWebAppLoginUseTouchId;)
++ (BOOL)offlineWebAppLoginUseTouchId SWIFT_WARN_UNUSED_RESULT;
++ (void)setOfflineWebAppLoginUseTouchId:(BOOL)value;
 /// The time in seconds the monitor should wait to see if more alerts happen before sending the alert to the server
 /// NOTE:  This configuration is only valid if clientMonitoringEnabled is enabled
 /// <em>Default</em>: 30 seconds
