@@ -11,81 +11,67 @@ import PredixMobileiOS
 import PredixMobileSDK
 import XCTest
 
-extension XCTestCase
-{
-    func setupPMM()
-    {
+extension XCTestCase {
+    func setupPMM() {
         // ensure clean slate
         let testViewController = TestViewController()
-        
-        _ = PredixMobilityManager(packageWindow: testViewController, presentAuthentication: { (packageWindow) -> (PredixAppWindowProtocol) in
-            
+
+        _ = PredixMobilityManager(packageWindow: testViewController, presentAuthentication: { (_) -> (PredixAppWindowProtocol) in
+
             let authVC = TestViewController()
             return authVC as PredixAppWindowProtocol
-            
-            }, dismissAuthentication: { (authenticationWindow) -> () in
-                
+
+            }, dismissAuthentication: { (_) -> Void in
+
         })
     }
-    
-    func serviceTester(_ service: ServiceProtocol.Type, path: String, expectedStatusCode: HTTPStatusCode, testResponse testResponseOptional: ((URLResponse) -> Void)?, testData testDataOptional: ((Data) -> Void)?)
-    {
+
+    func serviceTester(_ service: ServiceProtocol.Type, path: String, expectedStatusCode: Http.StatusCode, testResponse testResponseOptional: ((URLResponse) -> Void)?, testData testDataOptional: ((Data) -> Void)?) {
         let request = URLRequest(url: URL(string: path)!)
         serviceTester(service, request: request, expectedStatusCode: expectedStatusCode, testResponse: testResponseOptional, testData: testDataOptional)
     }
-    
-    func serviceTester(_ service: ServiceProtocol.Type, request: URLRequest, expectedStatusCode: HTTPStatusCode, testResponse testResponseOptional: ((URLResponse) -> Void)?, testData testDataOptional: ((Data) -> Void)?)
-    {
+
+    func serviceTester(_ service: ServiceProtocol.Type, request: URLRequest, expectedStatusCode: Http.StatusCode, testResponse testResponseOptional: ((URLResponse) -> Void)?, testData testDataOptional: ((Data) -> Void)?) {
         ServiceRouter.sharedInstance.registerService(service)
         let serviceName = NSStringFromClass(service)
         let testExpectation = self.expectation(description: "\(#function):\(serviceName)")
-        
+
         ServiceRouter.sharedInstance.processRequest(request, responseBlock: { (responseOptional : URLResponse?) -> Void in
-            
-            if let response = responseOptional as? HTTPURLResponse
-            {
+
+            if let response = responseOptional as? HTTPURLResponse {
                 XCTAssertEqual(response.statusCode, expectedStatusCode.rawValue, "Response status code was different from expected")
-                if let testResponse = testResponseOptional
-                {
+                if let testResponse = testResponseOptional {
                     testResponse(response)
                 }
-            }
-            else
-            {
+            } else {
                 XCTAssert(false, "\(serviceName) service returned nil response")
             }
-            
+
             }, dataBlock: { (dataOptional : Data?) -> Void in
-                
-                if let testData = testDataOptional
-                {
-                    if let data = dataOptional
-                    {
+
+                if let testData = testDataOptional {
+                    if let data = dataOptional {
                         testData(data)
-                    }
-                    else
-                    {
+                    } else {
                         XCTAssert(false, "Data test function supplied, but no test data was returned from call.")
                     }
                 }
-                
+
             }, completionBlock: { () -> Void in
                 testExpectation.fulfill()
         })
-        
+
         self.waitForExpectations(timeout: 20, handler: nil)
         ServiceRouter.sharedInstance.unregisterService(service)
     }
-    
-    func userDataURL() -> URL
-    {
+
+    func userDataURL() -> URL {
         var appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        
-        if let bundleId = Bundle.main.bundleIdentifier
-        {
+
+        if let bundleId = Bundle.main.bundleIdentifier {
             appSupportURL = appSupportURL.appendingPathComponent(bundleId)
         }
-        
+
         return appSupportURL.appendingPathComponent("UserData")
     }
 }

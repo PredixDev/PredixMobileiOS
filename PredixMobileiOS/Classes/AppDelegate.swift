@@ -13,7 +13,7 @@ import PredixMobileSDK
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var authenticationViewController : UIViewController?
+    var authenticationViewController: UIViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -25,28 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return true
             }
         #endif
-        
+
         //Disable requirement to have a passcode set on the device. This is not recommended for production systems. A device passcode is a critical security feature of iOS devices.
         //PredixMobilityConfiguration.requireDevicePasscodeSet = false
-        
+
         // Pre-load configuration. This will load any Settings bundles into NSUserDefaults and set default logging levels
         PredixMobilityConfiguration.loadConfiguration()
-        
-        // Add optional and custom services to the system if required by adding these services to an array, and assigning that array to PredixMobilityConfiguration.additionalBootServicesToRegister.
-        //PredixMobilityConfiguration.additionalBootServicesToRegister = [OpenURLService.self]
-        //
-        // Note: additionalBootServicesToRegister is an array, so the above assigns array with a single element to additionalBootServicesToRegister.
-        // You could assign multiple services to the array by creating the array with multiple values:
-        //
-        //PredixMobilityConfiguration.additionalBootServicesToRegister = [OpenURLService.self, MyCustomService.self, MyOtherService.self]
-        //
-        // Or by appending to the array:
-        //
-        //PredixMobilityConfiguration.additionalBootServicesToRegister = [OpenURLService.self]
-        //PredixMobilityConfiguration.additionalBootServicesToRegister?.append(MyCustomService.self)
-        //PredixMobilityConfiguration.additionalBootServicesToRegister?.append(MyOtherService.self)
-        
-        
+
+        // Add optional and custom services to the system if required by appending service classes to the PredixMobilityConfiguration.additionalBootServicesToRegister array.
+        //PredixMobilityConfiguration.additionalBootServicesToRegister.append(OpenURLService.self)
+
         // Example of creating a view indexed on a field called "part_number", and issuing a value called "part_description"
         /*
          PredixMobilityConfiguration.appendDataViewDefinition("views/parts", version: "1") { (properties: [String : Any], emit: (Any, Any?) -> ()) -> () in
@@ -57,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
          }
          */
-        
+
         // Example of creating a view for full text search, assuming "body" is a property in some documents that contains a large amount of text.
         /*
         PredixMobilityConfiguration.appendDataViewDefinition("views/searchtext", version: "1") { (properties: [String : Any], emit: (Any, Any?) -> ()) -> () in
@@ -68,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         */
-        
+
         /* Example of a PushReplicationFilter
          
             In this example, only those documents whose "type" property match the provided "allowedType" parameter are pushed to the server.
@@ -90,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
         */
-        
+
         /*
          Example of setting a default filter parameters
          These default filter parameters would work with the above addPushReplicationFilter filter closure example to exclude all documents from being sent to the server,
@@ -99,28 +87,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //PredixMobilityConfiguration.defaultPushReplicationFilterName = "filterByType"
         //PredixMobilityConfiguration.defaultPushReplicationFilterParameters = ["allowedType": "command"]
 
-        
         //Example of capturing ServiceRouter metrics. See logServiceInvokedNotifications function below.
         //self.logServiceInvokedNotifications()
-        
+
         // create the PredixMobilityManager object. This object coordinates the application state, interacts with the various services, and holds closures called during authentication.
-        
-        let vc : ViewController = self.window?.rootViewController as! ViewController
-        unowned let unownedSelf = self
-        let pmm = PredixMobilityManager(packageWindow: vc, presentAuthentication: { (packageWindow) -> (PredixAppWindowProtocol) in
-            
+
+        let vc: ViewController = self.window?.rootViewController as! ViewController
+        let pmm = PredixMobilityManager(packageWindow: vc, presentAuthentication: {[unowned self] (_) -> (PredixAppWindowProtocol) in
+
             // for this example we're using a new instance of the primary view controller to host the authentication pages.
             let authVC = vc.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
             authVC.isAuthenticationView = true
-            unownedSelf.authenticationViewController = authVC
-            unownedSelf.window?.rootViewController!.present(authVC, animated: true, completion: nil)
+            self.authenticationViewController = authVC
+            // ensure we're presenting from the topmost view
+            var mainVC = UIApplication.shared.keyWindow?.rootViewController
+            while mainVC?.presentedViewController != nil {
+                mainVC = mainVC?.presentedViewController
+            }
+            mainVC?.present(authVC, animated: true, completion: nil)
             return authVC as PredixAppWindowProtocol
-            
-            }, dismissAuthentication: { (authenticationWindow) -> () in
-                
-                if let authVC = unownedSelf.authenticationViewController
-                {
-                    unownedSelf.authenticationViewController = nil
+
+            }, dismissAuthentication: { (_) -> Void in
+
+                if let authVC = self.authenticationViewController {
+                    self.authenticationViewController = nil
                     authVC.dismiss(animated: true, completion: nil)
                 }
 
@@ -128,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // logging our current running environment
         Logger.debug("Started app with launchOptions: \(String(describing: launchOptions))")
-        
+
         if Logger.isInfoEnabled() {
             let versionInfo = PredixMobilityConfiguration.getVersionInfo()
             let processInfo = ProcessInfo.processInfo
@@ -146,24 +136,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             Logger.info(runningEnvironment)
         }
-        
-        if TARGET_OS_SIMULATOR == 1
-        {
+
+        if TARGET_OS_SIMULATOR == 1 {
             //This will help you find where the build lives when running in the simulator
             Logger.info("Simulator build running from:\n \(Bundle.main.bundlePath)")
-            let applicationSupportDirectory = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory,.userDomainMask,true).first!
+            let applicationSupportDirectory = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
             Logger.info("Simulator Application Support dir is here:\n \(applicationSupportDirectory))")
         }
-        
-        if let launchOptions = launchOptions, let notification = launchOptions[UIApplicationLaunchOptionsKey.localNotification] as? UILocalNotification
-        {
+
+        if let launchOptions = launchOptions, let notification = launchOptions[UIApplicationLaunchOptionsKey.localNotification] as? UILocalNotification {
             Logger.debug("Startup with local notification")
             Logger.trace("Startup local notification info: \(String(describing: notification.userInfo))")
             PredixMobilityManager.sharedInstance.applicationDelegates.application(application, didReceiveLocalNotification: notification)
         }
-        
-        if let launchOptions = launchOptions, let userInfo = launchOptions[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable: Any]
-        {
+
+        if let launchOptions = launchOptions, let userInfo = launchOptions[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] {
             Logger.debug("Startup with remote notification")
             Logger.trace("Startup remote notification info: \(userInfo)")
             PredixMobilityManager.sharedInstance.applicationDelegates.application(application, didReceiveRemoteNotification: userInfo)
@@ -171,36 +158,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // start the application. This will spin up the PredixMobile environment and call the Boot service to start the application.
         pmm.startApp()
-        
+
         self.setupRemoteNotifications()
-        
+
         return true
     }
 
     // Registers for Remote (Push) Notifications.
-    func setupRemoteNotifications()
-    {
+    func setupRemoteNotifications() {
         self.setupUserNotificationSettings()
         UIApplication.shared.registerForRemoteNotifications()
     }
 
     // sets up the User Notification Settings, if those settings haven't already been setup.
-    func setupUserNotificationSettings()
-    {
+    func setupUserNotificationSettings() {
         // get the current settings
         let settings = UIApplication.shared.currentUserNotificationSettings
-        if settings == nil || settings!.categories == nil || settings!.categories!.isEmpty || settings!.types.isEmpty
-        {
+        if settings == nil || settings!.categories == nil || settings!.categories!.isEmpty || settings!.types.isEmpty {
             // ensure the current settings have what we're expecting. If not, add what we want
             let action = UIMutableUserNotificationAction()
             action.activationMode = .foreground
-            
+
             let actionCategory = UIMutableUserNotificationCategory()
             actionCategory.setActions([action], for: UIUserNotificationActionContext.default)
-            
+
             let categorySet = Set<UIMutableUserNotificationCategory>(arrayLiteral: actionCategory)
-            
-            let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound] , categories: categorySet)
+
+            let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: categorySet)
             UIApplication.shared.registerUserNotificationSettings(settings)
         }
     }
@@ -229,10 +213,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
     */
-    
+
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        
+
         #if DEBUG
             if ProcessInfo.processInfo.environment["XCInjectBundle"] != nil {
                 // Exit if we're running unit tests...
@@ -241,17 +225,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         #endif
     }
-    
-    //MARK: Notification handlers to pass to PredixMobilityManager
-    
+
+    // MARK: Notification handlers to pass to PredixMobilityManager
+
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         PredixMobilityManager.sharedInstance.applicationDelegates.application(application, didReceiveLocalNotification: notification)
     }
-    
+
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         PredixMobilityManager.sharedInstance.applicationDelegates.application(application, didReceiveRemoteNotification: userInfo)
     }
-    
+
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         PredixMobilityManager.sharedInstance.applicationDelegates.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
     }
@@ -260,7 +244,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PredixMobilityManager.sharedInstance.applicationDelegates.application(application, didFailToRegisterForRemoteNotificationsWithError: error as NSError)
     }
 
-
 }
-
-

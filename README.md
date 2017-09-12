@@ -11,7 +11,7 @@ Step 2. [Running the Predix Mobile Sample App](https://www.predix.io/docs#EGUzWw
 
 Step 3. [Creating a Mobile Hello World Web App](https://www.predix.io/docs#DrBWuHkl) 
 
-Note: This sample reference app runs on a Mac with an XCode version 8.3.3 installed on it.
+Note: This sample reference app runs on a Mac with an XCode version 9.0 installed on it.
 
 ## Download the Container and Start the App
 

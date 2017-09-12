@@ -31,7 +31,5 @@ FOUNDATION_EXPORT const unsigned char PredixMobileSDKVersionString[];
 #import <PredixMobileSDK/SSZipArchive.h>
 */
 #import "PGSDKConstants.h"
-#import "PGSDKLogProvider.h"
-#import "PGSDKLogger.h"
 #import "SSZipArchive.h"
 #endif
