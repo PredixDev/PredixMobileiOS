@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var authenticationViewController: UIViewController?
+    var authenticated: Bool = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -110,6 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }, dismissAuthentication: { (_) -> Void in
 
                 if let authVC = self.authenticationViewController {
+                    self.authenticated = true
                     self.authenticationViewController = nil
                     authVC.dismiss(animated: true, completion: nil)
                 }
