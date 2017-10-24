@@ -5,19 +5,19 @@ This project is the sample reference application for the Predix Mobile Container
 ## Getting Started
 Install the Predix Mobile cloud services and the Predix Mobile command line tool. You must also complete the steps listed below to publish your initial Predix Mobile webapp, define your Predix Mobile app, and import the sample data:
 
-Step 1. [Get Started with the Mobile Service and Mobile SDK](https://www.predix.io/docs#rae4EfJ6)
+Step 1. [Get Started with the Predix Sync and SDKs](https://docs.predix.io/en-US/content/service/mobile/predix_sync/get-started-with-the-predix-sync-and-sdks)
 
-Step 2. [Running the Predix Mobile Sample App](https://www.predix.io/docs#EGUzWwcC)
+Step 2. [Running the Predix Mobile Sample App](https://docs.predix.io/en-US/content/service/mobile/predix_sync/running-the-mobile-sample-app)
 
-Step 3. [Creating a Mobile Hello World Web App](https://www.predix.io/docs#DrBWuHkl) 
+Step 3. [Creating a Mobile Hello World Web App](https://docs.predix.io/en-US/content/service/mobile/predix_sync/creating-a-mobile-hello-world-web-app) 
 
 Note: This sample reference app runs on a Mac with an XCode version 9.0 installed on it.
 
 ## Download the Container and Start the App
 
-Step 4. [Downloading the iOS Predix Mobile App Container](https://www.predix.io/docs#F30gVeYB)
+Step 4. [Downloading the iOS Predix Mobile App Container](https://docs.predix.io/en-US/content/service/mobile/predix_sync/get-the-mobile-reference-app-container)
 
-Step 5. [Starting your iOS Sample App](https://www.predix.io/docs/?r=205683#cKwF3PlW)
+Step 5. [Starting your iOS Sample App](https://docs.predix.io/en-US/content/service/mobile/predix_sync/running-the-mobile-sample-app)
 
 
 ## Troubleshooting
@@ -34,13 +34,13 @@ You must run the container application at least once in order for the PredixUp A
 
 ### Why do I see a sad looking kitten ?
 
-The sad looking kitten (Sad Kitty) represents this sample app's serious error page. While whimsical, it lets you know that something is configured incorrectly, or some other error prevented the app from starting. Use the error messages displayed at the bottom on the Sad Kitty page along with the console logs in XCode to determine the problem.
+The sad looking kitten (Sad Kitty) represents this sample app's serious error page. While whimsical, it lets you know that something is configured incorrectly, or some other error prevented the app from starting. Use the error messages displayed at the bottom of the Sad Kitty page along with the console logs in XCode to determine the problem.
 
 ### Why is the Sad Kitty saying, "Authentication failed",  I never saw the authentication page?
 
 When you review the logs you may see various network error messages and messages indicating that you cannot connect to the backend.
 
-First, ensure that your Mac is online. Then, review the Server setting in the Settings app. You may want to check the following:
+First, ensure that your Mac is online. Then, review the Server settings in the Settings app. You may want to check the following:
 
 * Your server host setting is correct. 
 * A problem that may have occured in Step 2
@@ -58,7 +58,7 @@ Then immediately afterwards:
 
 Followed by other networking related error messages.
 
-The above mentioned messages indicate that you successfully logged in, but the system was unable to download your user information. This can happen because of a sudden network interuption or an issue with the backend services.
+The above mentioned messages indicate that you successfully logged in, but the system was unable to download your user information. This can happen because of a sudden network interruption or an issue with the backend services.
 
 ### Why is the Sad Kitty saying, "Unable to determine initial startup PredixMobile App" ?
 
