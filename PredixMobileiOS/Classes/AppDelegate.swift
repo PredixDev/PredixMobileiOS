@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var authenticationViewController: UIViewController?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
         #if DEBUG
@@ -144,13 +144,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Logger.info("Simulator Application Support dir is here:\n \(applicationSupportDirectory))")
         }
 
-        if let launchOptions = launchOptions, let notification = launchOptions[UIApplicationLaunchOptionsKey.localNotification] as? UILocalNotification {
+        if let launchOptions = launchOptions, let notification = launchOptions[UIApplication.LaunchOptionsKey.localNotification] as? UILocalNotification {
             Logger.debug("Startup with local notification")
             Logger.trace("Startup local notification info: \(String(describing: notification.userInfo))")
             PredixMobilityManager.sharedInstance.applicationDelegates.application(application, didReceiveLocalNotification: notification)
         }
 
-        if let launchOptions = launchOptions, let userInfo = launchOptions[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] {
+        if let launchOptions = launchOptions, let userInfo = launchOptions[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] {
             Logger.debug("Startup with remote notification")
             Logger.trace("Startup remote notification info: \(userInfo)")
             PredixMobilityManager.sharedInstance.applicationDelegates.application(application, didReceiveRemoteNotification: userInfo)
